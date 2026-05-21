@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Laws of Exponents — Ganita Prakash Grade 8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f4f0;--surface:#fff;--surface2:#f0ede8;--border:#d8d4cc;
+  --text:#1a1814;--text2:#5a5650;--text3:#9a958e;
+  --blue:#2c5f9e;--red:#c0392b;--green:#1a7a4a;--orange:#e08020;
+  --font:'DM Sans',-apple-system,sans-serif;--mono:'DM Mono',ui-monospace,monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.5}
+.page{max-width:880px;margin:0 auto;padding:28px 20px}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:5px}
+.title{font-size:22px;font-weight:700;margin-bottom:5px}
+.subtitle{font-size:14px;color:var(--text2);margin-bottom:22px;max-width:560px;line-height:1.5}
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px}
+.card-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:14px}
+
+/* Law selector */
+.law-tabs{display:flex;gap:4px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:4px;margin-bottom:20px;flex-wrap:wrap}
+.law-tab{flex:1;min-width:120px;padding:8px 10px;text-align:center;font-size:13px;font-weight:500;color:var(--text2);border-radius:7px;cursor:pointer;border:none;background:none;font-family:var(--font);transition:all .12s}
+.law-tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.08);border:1.5px solid var(--border)}
+
+/* Rule card at top */
+.rule-banner{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:18px;text-align:center}
+.rule-formula{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
+.rule-words{font-size:13px;color:var(--text2)}
+
+/* Sliders */
+.sl-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.sl-row label{font-size:13px;font-weight:500;color:var(--text2);min-width:80px}
+.sl-row input[type=range]{flex:1;height:5px;cursor:pointer}
+.sl-val{font-family:var(--mono);font-size:15px;font-weight:700;min-width:28px;text-align:right}
+
+/* Block visualiser */
+.blocks-section{margin:16px 0}
+.blocks-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:8px}
+.blocks-row{display:flex;flex-wrap:wrap;gap:3px;min-height:36px;align-items:center;padding:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px}
+.block{width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
+.block-sep{font-size:16px;color:var(--text3);margin:0 4px;font-weight:500}
+.block-group-label{font-size:11px;color:var(--text3);padding:0 6px;align-self:flex-end;margin-bottom:2px}
+
+/* Result row */
+.result-row{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:12px 16px;margin:10px 0;flex-wrap:wrap}
+.result-lhs{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text2)}
+.result-eq{font-size:18px;color:var(--text3)}
+.result-rhs{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--blue)}
+.result-check{font-size:13px;color:var(--green);font-weight:600;margin-left:auto}
+
+/* Try it */
+.try-section{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px}
+.try-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:10px}
+.try-row{display:flex;gap:6px;flex-wrap:wrap}
+.try-btn{padding:5px 12px;border:1.5px solid var(--border);border-radius:7px;font-family:var(--mono);font-size:12.5px;background:var(--surface);color:var(--text2);cursor:pointer}
+.try-btn:hover{border-color:var(--blue);color:var(--blue)}
+
+.insight{background:#fff8f0;border:1.5px solid #f0d8c0;border-radius:10px;padding:13px 18px;font-size:13.5px;color:#6b4400;line-height:1.65;margin-top:14px}
+.insight strong{color:#a05000}
+.insight .eq{font-family:var(--mono);font-size:13px;display:block;margin:2px 0}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="lbl">Chapter 2 · Power Play</div>
+  <div class="title">Laws of Exponents</div>
+  <div class="subtitle">See why each exponent law works by counting individual factors. Adjust the sliders and watch the blocks represent the multiplication.</div>
+
+  <div class="card">
+    <div class="law-tabs">
+      <button class="law-tab active" id="lt0" onclick="setLaw(0)">nᵃ × nᵇ = nᵃ⁺ᵇ</button>
+      <button class="law-tab" id="lt1" onclick="setLaw(1)">(nᵃ)ᵇ = nᵃˣᵇ</button>
+      <button class="law-tab" id="lt2" onclick="setLaw(2)">nᵃ ÷ nᵇ = nᵃ⁻ᵇ</button>
+      <button class="law-tab" id="lt3" onclick="setLaw(3)">mᵃ × nᵃ = (mn)ᵃ</button>
+      <button class="law-tab" id="lt4" onclick="setLaw(4)">n⁰ = 1 and n⁻ᵃ</button>
+    </div>
+
+    <div class="rule-banner" id="ruleBanner">
+      <div class="rule-formula" id="ruleFormula"></div>
+      <div class="rule-words" id="ruleWords"></div>
+    </div>
+
+    <div id="sliders"></div>
+    <div id="blockViz"></div>
+    <div class="try-section" id="trySection">
+      <div class="try-title">Quick examples</div>
+      <div class="try-row" id="tryRow"></div>
+    </div>
+    <div class="insight" id="insight"></div>
+  </div>
+</div>
+
+<script>
+const BLOCK_COLORS=['#2c5f9e','#c0392b','#1a7a4a','#e08020','#7c3aed','#0891b2'];
+let law=0, params={n:2,a:3,b:4,m:3};
+
+const LAWS=[
+  {
+    formula:'nᵃ × nᵇ = nᵃ⁺ᵇ',
+    words:'Multiplying same base: add the exponents',
+    sliders:[{key:'n',label:'Base n',min:2,max:5},{key:'a',label:'Exponent a',min:1,max:6},{key:'b',label:'Exponent b',min:1,max:6}],
+    examples:['2³×2⁴','3²×3⁵','5¹×5⁶'],
+    insight:'When you multiply nᵃ × nᵇ you get nᵃ copies and nᵇ copies of n — that\'s n^(a+b) copies altogether. Count the blocks to see it.',
+  },
+  {
+    formula:'(nᵃ)ᵇ = nᵃˣᵇ',
+    words:'Raising a power to another power: multiply the exponents',
+    sliders:[{key:'n',label:'Base n',min:2,max:4},{key:'a',label:'Inner exponent a',min:1,max:4},{key:'b',label:'Outer exponent b',min:1,max:4}],
+    examples:['(2³)²','(3²)⁴','(4²)³'],
+    insight:'(nᵃ)ᵇ means nᵃ multiplied b times. Each of those nᵃ is a×b total n\'s. So (nᵃ)ᵇ = n^(a×b).',
+  },
+  {
+    formula:'nᵃ ÷ nᵇ = nᵃ⁻ᵇ',
+    words:'Dividing same base: subtract the exponents',
+    sliders:[{key:'n',label:'Base n',min:2,max:5},{key:'a',label:'Exponent a (larger)',min:3,max:8},{key:'b',label:'Exponent b',min:1,max:4}],
+    examples:['2⁶÷2²','3⁵÷3³','5⁴÷5¹'],
+    insight:'nᵃ ÷ nᵇ cancels b copies of n from numerator and denominator, leaving a−b copies.',
+  },
+  {
+    formula:'mᵃ × nᵃ = (mn)ᵃ',
+    words:'Same exponent, different bases: combine the bases',
+    sliders:[{key:'n',label:'Base n',min:2,max:5},{key:'m',label:'Base m',min:2,max:5},{key:'a',label:'Exponent a',min:1,max:5}],
+    examples:['2⁴×3⁴','3³×4³','2⁵×5⁵'],
+    insight:'mᵃ × nᵃ = (m×m×…) × (n×n×…) = (m×n)×(m×n)×… = (mn)ᵃ. Rearrange the factors!',
+  },
+  {
+    formula:'n⁰ = 1    n⁻ᵃ = 1/nᵃ',
+    words:'Zero exponent = 1. Negative exponent = reciprocal.',
+    sliders:[{key:'n',label:'Base n',min:2,max:8},{key:'a',label:'Exponent a',min:0,max:5}],
+    examples:['2⁰','5⁰','3⁻²','10⁻³'],
+    insight:'n⁰ = nᵃ ÷ nᵃ = 1. And n⁻ᵃ = n⁰ ÷ nᵃ = 1/nᵃ. Negative exponents are just reciprocals.',
+  },
+];
+
+function sup(n){
+  const map={'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
+  return String(n).split('').map(c=>map[c]||c).join('');
+}
+function pow(b,e){return Math.round(Math.pow(b,e));}
+
+function renderBlocks(arr, groupSizes, colors){
+  let html='';
+  let idx=0;
+  groupSizes.forEach((sz,gi)=>{
+    if(gi>0) html+=`<span class="block-sep">×</span>`;
+    for(let i=0;i<sz;i++){
+      html+=`<div class="block" style="background:${colors[gi%colors.length]}">${arr[idx]}</div>`;
+      idx++;
+    }
+  });
+  return html;
+}
+
+function render(){
+  const L=LAWS[law];
+  const {n,a,b,m}=params;
+  document.getElementById('ruleFormula').textContent=L.formula;
+  document.getElementById('ruleWords').textContent=L.words;
+
+  // Sliders
+  const sdiv=document.getElementById('sliders');
+  sdiv.innerHTML='';
+  L.sliders.forEach(sl=>{
+    const v=params[sl.key];
+    const row=document.createElement('div');
+    row.className='sl-row';
+    row.innerHTML=`<label>${sl.label}</label>
+      <input type="range" min="${sl.min}" max="${sl.max}" value="${v}" oninput="params['${sl.key}']=parseInt(this.value);render()" style="accent-color:var(--blue)">
+      <span class="sl-val" style="color:var(--blue)">${v}</span>`;
+    sdiv.appendChild(row);
+  });
+
+  // Block visualiser
+  const viz=document.getElementById('blockViz');
+  viz.innerHTML='';
+  const c=BLOCK_COLORS;
+
+  if(law===0){
+    // nᵃ × nᵇ
+    const blocksA=Array(a).fill(n);
+    const blocksB=Array(b).fill(n);
+    viz.innerHTML=`
+      <div class="blocks-section">
+        <div class="blocks-label">${n}${sup(a)} = ${n} multiplied ${a} times</div>
+        <div class="blocks-row">${blocksA.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}</div>
+      </div>
+      <div class="blocks-section">
+        <div class="blocks-label">× ${n}${sup(b)} = ${n} multiplied ${b} more times</div>
+        <div class="blocks-row">${blocksB.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`).join('')}</div>
+      </div>
+      <div class="blocks-section">
+        <div class="blocks-label">Together = ${n} multiplied ${a+b} times = ${n}${sup(a+b)}</div>
+        <div class="blocks-row">${[...blocksA.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`), ...blocksB.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`)].join('')}</div>
+      </div>
+      <div class="result-row">
+        <span class="result-lhs">${n}${sup(a)} × ${n}${sup(b)} = ${pow(n,a)} × ${pow(n,b)}</span>
+        <span class="result-eq">=</span>
+        <span class="result-rhs">${pow(n,a+b)} = ${n}${sup(a+b)}</span>
+        <span class="result-check">a+b = ${a}+${b} = ${a+b} ✓</span>
+      </div>`;
+  } else if(law===1){
+    // (nᵃ)ᵇ
+    const inner=Array(a).fill(n);
+    const groups=Array(b).fill(a);
+    const allBlocks=Array(a*b).fill(n);
+    let groupsHtml='';
+    for(let g=0;g<b;g++){
+      groupsHtml+=`<span class="block-sep">(</span>`;
+      for(let i=0;i<a;i++) groupsHtml+=`<div class="block" style="background:${c[g%c.length]}">${n}</div>`;
+      groupsHtml+=`<span class="block-sep">)</span>`;
+    }
+    viz.innerHTML=`
+      <div class="blocks-section">
+        <div class="blocks-label">${n}${sup(a)} = one group of ${a} n's</div>
+        <div class="blocks-row">${inner.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}</div>
+      </div>
+      <div class="blocks-section">
+        <div class="blocks-label">(${n}${sup(a)})${sup(b)} = ${b} such groups = ${b}×${a} = ${a*b} n's total</div>
+        <div class="blocks-row">${groupsHtml}</div>
+      </div>
+      <div class="result-row">
+        <span class="result-lhs">(${n}${sup(a)})${sup(b)} = ${pow(n,a)}${sup(b)}</span>
+        <span class="result-eq">=</span>
+        <span class="result-rhs">${pow(n,a*b)} = ${n}${sup(a*b)}</span>
+        <span class="result-check">a×b = ${a}×${b} = ${a*b} ✓</span>
+      </div>`;
+  } else if(law===2){
+    const aS=Math.max(a,b+1), bS=Math.min(a,b);
+    const cancelled=Array(bS).fill(n);
+    const remaining=Array(aS-bS).fill(n);
+    viz.innerHTML=`
+      <div class="blocks-section">
+        <div class="blocks-label">${n}${sup(aS)} = ${aS} copies of ${n}</div>
+        <div class="blocks-row">
+          ${remaining.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}
+          ${cancelled.map(v=>`<div class="block" style="background:${c[0]};opacity:.3;text-decoration:line-through">${v}</div>`).join('')}
+        </div>
+      </div>
+      <div class="blocks-section">
+        <div class="blocks-label">÷ ${n}${sup(bS)} cancels ${bS} copies — ${aS-bS} copies remain</div>
+        <div class="blocks-row">${remaining.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`).join('')}</div>
+      </div>
+      <div class="result-row">
+        <span class="result-lhs">${n}${sup(aS)} ÷ ${n}${sup(bS)} = ${pow(n,aS)} ÷ ${pow(n,bS)}</span>
+        <span class="result-eq">=</span>
+        <span class="result-rhs">${pow(n,aS-bS)} = ${n}${sup(aS-bS)}</span>
+        <span class="result-check">a−b = ${aS}−${bS} = ${aS-bS} ✓</span>
+      </div>`;
+  } else if(law===3){
+    const mBlocks=Array(a).fill(m);
+    const nBlocks=Array(a).fill(n);
+    let paired='';
+    for(let i=0;i<a;i++) paired+=`<div class="block" style="background:${c[0]}">${m}</div><div class="block" style="background:${c[1]}">${n}</div><span class="block-sep" style="font-size:12px">|</span>`;
+    viz.innerHTML=`
+      <div class="blocks-section">
+        <div class="blocks-label">${m}${sup(a)} = ${m} copied ${a} times (blue)</div>
+        <div class="blocks-row">${mBlocks.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}</div>
+      </div>
+      <div class="blocks-section">
+        <div class="blocks-label">× ${n}${sup(a)} = ${n} copied ${a} times (red)</div>
+        <div class="blocks-row">${nBlocks.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`).join('')}</div>
+      </div>
+      <div class="blocks-section">
+        <div class="blocks-label">Regroup: pair each ${m} with a ${n} → ${a} copies of (${m}×${n}=${m*n})</div>
+        <div class="blocks-row">${paired}</div>
+      </div>
+      <div class="result-row">
+        <span class="result-lhs">${m}${sup(a)} × ${n}${sup(a)} = ${pow(m,a)} × ${pow(n,a)}</span>
+        <span class="result-eq">=</span>
+        <span class="result-rhs">${pow(m*n,a)} = (${m*n})${sup(a)}</span>
+        <span class="result-check">(${m}×${n})${sup(a)} ✓</span>
+      </div>`;
+  } else if(law===4){
+    const aVal=params.a;
+    let extraHtml='';
+    if(aVal===0){
+      extraHtml=`<div class="result-row"><span class="result-lhs">${n}${sup(0)} = ${n}${sup(2)} ÷ ${n}${sup(2)} = ${pow(n,2)} ÷ ${pow(n,2)}</span><span class="result-eq">=</span><span class="result-rhs">1</span><span class="result-check">anything ÷ itself = 1 ✓</span></div>`;
+    } else {
+      const frac=`1/${pow(n,aVal)}`;
+      extraHtml=`<div class="result-row"><span class="result-lhs">${n}${sup(-aVal)} = 1 ÷ ${n}${sup(aVal)} = 1 ÷ ${pow(n,aVal)}</span><span class="result-eq">=</span><span class="result-rhs">${frac}</span><span class="result-check">reciprocal ✓</span></div>
+      <div class="result-row"><span class="result-lhs">${n}${sup(aVal)} = 1 ÷ ${n}${sup(-aVal)}</span><span class="result-eq">=</span><span class="result-rhs">${pow(n,aVal)}</span></div>`;
+    }
+    viz.innerHTML=`
+      <div class="blocks-section">
+        <div class="blocks-label">${n}${sup(aVal)} = ${n} multiplied ${aVal} time${aVal!==1?'s':''}</div>
+        <div class="blocks-row">${Array(aVal).fill(n).map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')||'<span style="color:var(--text3);font-size:13px">Zero copies of n = no multiplication = 1</span>'}</div>
+      </div>${extraHtml}`;
+  }
+
+  // Examples
+  const tryRow=document.getElementById('tryRow');
+  tryRow.innerHTML='';
+  L.examples.forEach(ex=>{
+    const b=document.createElement('button');
+    b.className='try-btn';
+    b.textContent=ex;
+    tryRow.appendChild(b);
+  });
+
+  document.getElementById('insight').innerHTML=`<strong>${L.formula}:</strong> ${L.insight}`;
+}
+
+function setLaw(i){
+  law=i;
+  ['lt0','lt1','lt2','lt3','lt4'].forEach((id,j)=>document.getElementById(id).classList.toggle('active',j===i));
+  // Reset to safe defaults
+  params={n:2,a:3,b:4,m:3};
+  if(i===1) params={n:2,a:3,b:2,m:3};
+  if(i===4) params={n:2,a:0,m:3,b:0};
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

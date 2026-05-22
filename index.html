@@ -5,316 +5,548 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Laws of Exponents — Ganita Prakash Grade 8</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f4f0;--surface:#fff;--surface2:#f0ede8;--border:#d8d4cc;
-  --text:#1a1814;--text2:#5a5650;--text3:#9a958e;
-  --blue:#2c5f9e;--red:#c0392b;--green:#1a7a4a;--orange:#e08020;
-  --font:'DM Sans',-apple-system,sans-serif;--mono:'DM Mono',ui-monospace,monospace;
+  --paper:#faf8f4; --paper2:#f3f0ea; --paper3:#e8e3d8;
+  --ink:#1c1a16;   --ink2:#4a4640;   --ink3:#8a8580;
+  --rule:#d4cfc5;
+  --teal:#1d6a72;  --teal2:#2a8a94;  --teal-bg:#e8f4f5;
+  --rust:#b84a2a;  --rust-bg:#fdf0ec;
+  --gold:#c08030;  --gold-bg:#fdf5e8;
+  --sage:#3a6a48;  --sage-bg:#eaf2ec;
+  --violet:#6a4a90; --violet-bg:#f2eef8;
+  --font:'DM Sans',sans-serif;
+  --serif:'Lora',Georgia,serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --shadow:0 2px 12px rgba(28,26,22,.08);
 }
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.5}
-.page{max-width:880px;margin:0 auto;padding:28px 20px}
-.lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:5px}
-.title{font-size:22px;font-weight:700;margin-bottom:5px}
-.subtitle{font-size:14px;color:var(--text2);margin-bottom:22px;max-width:560px;line-height:1.5}
-.card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px}
-.card-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:14px}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);
+  min-height:100vh;-webkit-font-smoothing:antialiased;padding:28px 20px 60px;line-height:1.6;
+  background-image:
+    radial-gradient(circle at 20% 30%,rgba(192,128,48,.04) 0,transparent 50%),
+    radial-gradient(circle at 80% 70%,rgba(29,106,114,.04) 0,transparent 50%)}
+.app{max-width:880px;margin:0 auto}
 
-/* Law selector */
-.law-tabs{display:flex;gap:4px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:4px;margin-bottom:20px;flex-wrap:wrap}
-.law-tab{flex:1;min-width:120px;padding:8px 10px;text-align:center;font-size:13px;font-weight:500;color:var(--text2);border-radius:7px;cursor:pointer;border:none;background:none;font-family:var(--font);transition:all .12s}
-.law-tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.08);border:1.5px solid var(--border)}
+/* ── HEADER ── */
+.header{margin-bottom:24px;padding-bottom:18px;border-bottom:1.5px solid var(--rule)}
+.chapter-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper2);border:1.5px solid var(--rule);border-radius:20px;padding:4px 14px 4px 10px;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.badge-num{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;font-size:12px;font-weight:700;font-family:var(--mono);display:flex;align-items:center;justify-content:center}
+h1{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-.3px;line-height:1.2;margin-bottom:5px}
+.header-sub{font-size:14px;color:var(--ink2);max-width:560px;line-height:1.55}
 
-/* Rule card at top */
-.rule-banner{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:18px;text-align:center}
-.rule-formula{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
-.rule-words{font-size:13px;color:var(--text2)}
+.card{background:var(--paper);border:1.5px solid var(--rule);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
 
-/* Sliders */
-.sl-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.sl-row label{font-size:13px;font-weight:500;color:var(--text2);min-width:80px}
-.sl-row input[type=range]{flex:1;height:5px;cursor:pointer}
-.sl-val{font-family:var(--mono);font-size:15px;font-weight:700;min-width:28px;text-align:right}
+/* ── LAW TABS ── */
+.law-tabs{display:flex;gap:3px;background:var(--paper2);border:1.5px solid var(--rule);border-radius:12px;padding:4px;margin-bottom:22px;flex-wrap:wrap}
+.law-tab{flex:1;min-width:110px;padding:8px 6px;text-align:center;font-size:12px;font-weight:700;color:var(--ink3);border-radius:9px;cursor:pointer;border:none;background:transparent;font-family:var(--mono);transition:all .15s;line-height:1.3}
+.law-tab:hover{color:var(--ink2)}
+.law-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(28,26,22,.10);border:1.5px solid var(--rule)}
 
-/* Block visualiser */
-.blocks-section{margin:16px 0}
-.blocks-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:8px}
-.blocks-row{display:flex;flex-wrap:wrap;gap:3px;min-height:36px;align-items:center;padding:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px}
-.block{width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
-.block-sep{font-size:16px;color:var(--text3);margin:0 4px;font-weight:500}
-.block-group-label{font-size:11px;color:var(--text3);padding:0 6px;align-self:flex-end;margin-bottom:2px}
+/* ── CONCEPT BANNER ── */
+.concept{background:var(--gold-bg);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:20px;font-family:var(--serif);font-style:italic;font-size:14px;color:#4a3010;line-height:1.65}
+.concept strong{font-style:normal;font-weight:700;color:#3a2008}
 
-/* Result row */
-.result-row{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:12px 16px;margin:10px 0;flex-wrap:wrap}
-.result-lhs{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text2)}
-.result-eq{font-size:18px;color:var(--text3)}
-.result-rhs{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--blue)}
-.result-check{font-size:13px;color:var(--green);font-weight:600;margin-left:auto}
+/* ── CTRL ROW ── */
+.ctrl{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ctrl-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);white-space:nowrap;min-width:80px}
+.ctrl input[type=range]{flex:1;max-width:200px;height:5px;accent-color:var(--teal);cursor:pointer}
+.ctrl-val{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--teal);min-width:24px}
 
-/* Try it */
-.try-section{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px}
-.try-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:10px}
-.try-row{display:flex;gap:6px;flex-wrap:wrap}
-.try-btn{padding:5px 12px;border:1.5px solid var(--border);border-radius:7px;font-family:var(--mono);font-size:12.5px;background:var(--surface);color:var(--text2);cursor:pointer}
-.try-btn:hover{border-color:var(--blue);color:var(--blue)}
+/* ── BLOCK VISUALISER ── */
+.visual-area{background:var(--paper2);border:1.5px solid var(--rule);border-radius:12px;padding:16px;margin-bottom:16px}
+.vis-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:40px;margin-bottom:8px}
+.vis-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:6px}
+.block{width:30px;height:30px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;flex-shrink:0;transition:all .2s;cursor:default;user-select:none}
+.block.cancellable{cursor:pointer;box-shadow:0 0 0 2px transparent}
+.block.cancellable:hover{box-shadow:0 0 0 2px var(--rust);transform:scale(1.1)}
+.block.cancelled{opacity:.2;text-decoration:line-through;transform:scale(.85)}
+.block.highlight-add{animation:popIn .3s ease}
+@keyframes popIn{0%{transform:scale(0);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.vis-sep{font-size:18px;color:var(--ink3);font-weight:700;padding:0 4px;align-self:center}
+.group-bracket{display:flex;align-items:center;gap:2px;padding:4px 6px;border-radius:6px;border:1.5px solid;flex-wrap:wrap}
 
-.insight{background:#fff8f0;border:1.5px solid #f0d8c0;border-radius:10px;padding:13px 18px;font-size:13.5px;color:#6b4400;line-height:1.65;margin-top:14px}
-.insight strong{color:#a05000}
-.insight .eq{font-family:var(--mono);font-size:13px;display:block;margin:2px 0}
+/* ── FORMULA BAR ── */
+.formula-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#fff;border:1.5px solid var(--rule);border-radius:10px;padding:12px 16px;margin-bottom:14px;min-height:54px}
+.fb-part{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink)}
+.fb-op{font-family:var(--mono);font-size:18px;color:var(--ink3);padding:0 4px}
+.fb-eq{font-size:18px;color:var(--ink3);padding:0 6px}
+
+/* The blank to fill in */
+.fb-blank{
+  width:52px;height:38px;border:2px solid var(--teal);border-radius:8px;
+  font-family:var(--mono);font-size:22px;font-weight:700;text-align:center;
+  color:var(--teal);background:#fff;outline:none;padding:0;
+  transition:all .18s
+}
+.fb-blank:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(192,128,48,.15)}
+.fb-blank.shake{animation:shake .35s ease}
+.fb-blank.wrong{border-color:var(--rust)!important;color:var(--rust)}
+.fb-blank.correct{border-color:var(--sage)!important;color:var(--sage);background:var(--sage-bg)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+/* ── CHECK BUTTON + FEEDBACK ── */
+.action-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.check-btn{padding:9px 22px;background:var(--teal);border:none;border-radius:9px;color:#fff;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .14s;letter-spacing:.2px}
+.check-btn:hover{background:#155a62}
+.check-btn:disabled{opacity:.4;cursor:not-allowed}
+.feedback{font-size:13px;font-weight:600;font-family:var(--mono)}
+.feedback.correct-fb{color:var(--sage)}
+.feedback.wrong-fb{color:var(--rust)}
+
+/* ── CORRECT REVEAL ── */
+.reveal-box{background:var(--sage-bg);border:1.5px solid #8abcaa;border-radius:10px;padding:13px 16px;margin-bottom:14px;display:none}
+.rb-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sage);margin-bottom:6px}
+.rb-body{font-size:13px;color:#2a4a30;line-height:1.6}
+.rb-body strong{font-weight:700}
+.rb-formula{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--sage);margin-top:4px}
+
+/* ── QUICK PROBLEMS ── */
+.problems-strip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;align-items:center}
+.prob-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3)}
+.prob-btn{padding:5px 12px;border:1.5px solid var(--rule);border-radius:20px;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink2);background:var(--paper);cursor:pointer;transition:all .12s}
+.prob-btn:hover{border-color:var(--teal);color:var(--teal)}
+.prob-btn.active-prob{background:var(--teal);border-color:var(--teal);color:#fff}
+
+/* ── INSIGHT ── */
+.insight{background:var(--gold-bg);border:1px solid #e0c080;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 15px;font-size:13px;color:#6b4400;line-height:1.65;margin-top:12px}
+.insight strong{color:#4a2e00}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="lbl">Chapter 2 · Power Play</div>
-  <div class="title">Laws of Exponents</div>
-  <div class="subtitle">See why each exponent law works by counting individual factors. Adjust the sliders and watch the blocks represent the multiplication.</div>
+<div class="app">
+  <div class="header">
+    <div class="chapter-badge"><div class="badge-num">2</div>Chapter 2 · Power Play</div>
+    <h1>Laws of Exponents</h1>
+    <p class="header-sub">See why each law works by counting blocks — then fill in the missing exponent yourself. Each law has three quick problems to try.</p>
+  </div>
 
   <div class="card">
-    <div class="law-tabs">
-      <button class="law-tab active" id="lt0" onclick="setLaw(0)">nᵃ × nᵇ = nᵃ⁺ᵇ</button>
-      <button class="law-tab" id="lt1" onclick="setLaw(1)">(nᵃ)ᵇ = nᵃˣᵇ</button>
-      <button class="law-tab" id="lt2" onclick="setLaw(2)">nᵃ ÷ nᵇ = nᵃ⁻ᵇ</button>
-      <button class="law-tab" id="lt3" onclick="setLaw(3)">mᵃ × nᵃ = (mn)ᵃ</button>
-      <button class="law-tab" id="lt4" onclick="setLaw(4)">n⁰ = 1 and n⁻ᵃ</button>
+    <div class="law-tabs" id="law-tabs">
+      <button class="law-tab active" data-law="0">nᵃ × nᵇ<br>= nᵃ⁺ᵇ</button>
+      <button class="law-tab" data-law="1">(nᵃ)ᵇ<br>= nᵃˣᵇ</button>
+      <button class="law-tab" data-law="2">nᵃ ÷ nᵇ<br>= nᵃ⁻ᵇ</button>
+      <button class="law-tab" data-law="3">mᵃ × nᵃ<br>= (mn)ᵃ</button>
+      <button class="law-tab" data-law="4">n⁰ = 1<br>n⁻ᵃ = 1/nᵃ</button>
     </div>
 
-    <div class="rule-banner" id="ruleBanner">
-      <div class="rule-formula" id="ruleFormula"></div>
-      <div class="rule-words" id="ruleWords"></div>
+    <div class="concept" id="concept-text"></div>
+
+    <!-- Sliders -->
+    <div id="slider-area"></div>
+
+    <!-- Visual blocks -->
+    <div class="visual-area" id="visual-area"></div>
+
+    <!-- Formula with blank -->
+    <div class="formula-bar" id="formula-bar"></div>
+
+    <!-- Action row -->
+    <div class="action-row">
+      <button class="check-btn" id="check-btn">Check</button>
+      <span class="feedback" id="feedback"></span>
     </div>
 
-    <div id="sliders"></div>
-    <div id="blockViz"></div>
-    <div class="try-section" id="trySection">
-      <div class="try-title">Quick examples</div>
-      <div class="try-row" id="tryRow"></div>
+    <!-- Correct reveal -->
+    <div class="reveal-box" id="reveal-box">
+      <div class="rb-title">Correct! Here's why:</div>
+      <div class="rb-body" id="reveal-body"></div>
     </div>
-    <div class="insight" id="insight"></div>
+
+    <!-- Quick problems -->
+    <div class="problems-strip" id="problems-strip">
+      <span class="prob-lbl">Try:</span>
+    </div>
+
+    <div class="insight" id="insight-box"></div>
   </div>
 </div>
 
 <script>
-const BLOCK_COLORS=['#2c5f9e','#c0392b','#1a7a4a','#e08020','#7c3aed','#0891b2'];
-let law=0, params={n:2,a:3,b:4,m:3};
+// ══════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════
+function sup(n){
+  return String(n).split('').map(c=>({'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'})[c]||c).join('');
+}
+function sub(n){
+  return String(n).split('').map(c=>({'0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉'})[c]||c).join('');
+}
+function p(b,e){return Math.round(Math.pow(b,Math.abs(e)));}
 
-const LAWS=[
+const PALETTE = ['#1d6a72','#b84a2a','#c08030','#3a6a48','#6a4a90','#2a5a8a'];
+
+function makeBlock(label, colorIdx, extraClass=''){
+  const d = document.createElement('div');
+  d.className = 'block ' + extraClass;
+  d.style.background = PALETTE[colorIdx % PALETTE.length];
+  d.textContent = label;
+  return d;
+}
+
+// ══════════════════════════════════════════════════════
+// LAW DEFINITIONS
+// ══════════════════════════════════════════════════════
+const LAWS = [
+  // 0: nᵃ × nᵇ = nᵃ⁺ᵇ
   {
-    formula:'nᵃ × nᵇ = nᵃ⁺ᵇ',
-    words:'Multiplying same base: add the exponents',
-    sliders:[{key:'n',label:'Base n',min:2,max:5},{key:'a',label:'Exponent a',min:1,max:6},{key:'b',label:'Exponent b',min:1,max:6}],
-    examples:['2³×2⁴','3²×3⁵','5¹×5⁶'],
-    insight:'When you multiply nᵃ × nᵇ you get nᵃ copies and nᵇ copies of n — that\'s n^(a+b) copies altogether. Count the blocks to see it.',
+    concept: '<strong>Multiplying same base — add exponents:</strong> nᵃ × nᵇ counts out <em>a</em> copies of n, then <em>b</em> more copies. Together that is a+b copies — which is exactly nᵃ⁺ᵇ.',
+    sliders: [{key:'n',label:'Base n',min:2,max:5,val:2},{key:'a',label:'a',min:1,max:5,val:3},{key:'b',label:'b',min:1,max:5,val:2}],
+    problems: [{n:2,a:3,b:4},{n:3,a:2,b:3},{n:5,a:1,b:4},{n:4,a:2,b:2}],
+    blanks: ['sum'],  // what the student fills in: a+b
+    formulaFn(v){ return `${v.n}${sup(v.a)} × ${v.n}${sup(v.b)} = ${v.n}`; },
+    correctFn(v){ return v.a + v.b; },
+    visualFn,
+    revealFn(v){ return `You counted ${v.a} blocks + ${v.b} blocks = ${v.a+v.b} blocks of ${v.n}. That's ${v.n}${sup(v.a+v.b)} = ${p(v.n,v.a+v.b)}. <br>Rule: add the exponents when the base is the same.`; },
+    insight: '<strong>nᵃ × nᵇ = nᵃ⁺ᵇ</strong> — exponent counts how many times you multiply by n. Doing it a times then b more times is a+b times total.',
   },
+  // 1: (nᵃ)ᵇ = nᵃˣᵇ
   {
-    formula:'(nᵃ)ᵇ = nᵃˣᵇ',
-    words:'Raising a power to another power: multiply the exponents',
-    sliders:[{key:'n',label:'Base n',min:2,max:4},{key:'a',label:'Inner exponent a',min:1,max:4},{key:'b',label:'Outer exponent b',min:1,max:4}],
-    examples:['(2³)²','(3²)⁴','(4²)³'],
-    insight:'(nᵃ)ᵇ means nᵃ multiplied b times. Each of those nᵃ is a×b total n\'s. So (nᵃ)ᵇ = n^(a×b).',
+    concept: '<strong>Power of a power — multiply exponents:</strong> (nᵃ)ᵇ means you take a group of <em>a</em> copies of n, and repeat that group <em>b</em> times. Total copies = a × b.',
+    sliders: [{key:'n',label:'Base n',min:2,max:4,val:2},{key:'a',label:'a',min:1,max:4,val:3},{key:'b',label:'b',min:1,max:4,val:2}],
+    problems: [{n:2,a:3,b:2},{n:3,a:2,b:3},{n:2,a:4,b:2},{n:4,a:2,b:3}],
+    formulaFn(v){ return `(${v.n}${sup(v.a)})${sup(v.b)} = ${v.n}`; },
+    correctFn(v){ return v.a * v.b; },
+    visualFn: visualFnPow,
+    revealFn(v){ return `${v.b} groups of ${v.a} blocks each = ${v.a}×${v.b} = ${v.a*v.b} blocks of ${v.n}. That's ${v.n}${sup(v.a*v.b)} = ${p(v.n,v.a*v.b)}.<br>Rule: multiply the exponents when raising a power to a power.`; },
+    insight: '<strong>(nᵃ)ᵇ = nᵃˣᵇ</strong> — b groups of a copies each = a×b copies total.',
   },
+  // 2: nᵃ ÷ nᵇ = nᵃ⁻ᵇ
   {
-    formula:'nᵃ ÷ nᵇ = nᵃ⁻ᵇ',
-    words:'Dividing same base: subtract the exponents',
-    sliders:[{key:'n',label:'Base n',min:2,max:5},{key:'a',label:'Exponent a (larger)',min:3,max:8},{key:'b',label:'Exponent b',min:1,max:4}],
-    examples:['2⁶÷2²','3⁵÷3³','5⁴÷5¹'],
-    insight:'nᵃ ÷ nᵇ cancels b copies of n from numerator and denominator, leaving a−b copies.',
+    concept: '<strong>Dividing same base — subtract exponents:</strong> nᵃ ÷ nᵇ cancels b copies from the top and bottom. Click the orange blocks to cancel them — the blue ones that survive give the answer.',
+    sliders: [{key:'n',label:'Base n',min:2,max:5,val:2},{key:'a',label:'a (bigger)',min:2,max:7,val:5},{key:'b',label:'b (smaller)',min:1,max:4,val:2}],
+    problems: [{n:2,a:6,b:2},{n:3,a:5,b:3},{n:4,a:4,b:1},{n:5,a:5,b:2}],
+    formulaFn(v){ const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b); return `${v.n}${sup(a)} ÷ ${v.n}${sup(b)} = ${v.n}`; },
+    correctFn(v){ const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b); return a-b; },
+    visualFn: visualFnDiv,
+    revealFn(v){ const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b); return `${a} blocks of ${v.n}, cancel ${b} (they're in both top and bottom) → ${a-b} survive. That's ${v.n}${sup(a-b)} = ${p(v.n,a-b)}.<br>Rule: subtract the exponents when dividing same base.`; },
+    insight: '<strong>nᵃ ÷ nᵇ = nᵃ⁻ᵇ</strong> — b copies cancel out, leaving a−b copies of n.',
   },
+  // 3: mᵃ × nᵃ = (mn)ᵃ
   {
-    formula:'mᵃ × nᵃ = (mn)ᵃ',
-    words:'Same exponent, different bases: combine the bases',
-    sliders:[{key:'n',label:'Base n',min:2,max:5},{key:'m',label:'Base m',min:2,max:5},{key:'a',label:'Exponent a',min:1,max:5}],
-    examples:['2⁴×3⁴','3³×4³','2⁵×5⁵'],
-    insight:'mᵃ × nᵃ = (m×m×…) × (n×n×…) = (m×n)×(m×n)×… = (mn)ᵃ. Rearrange the factors!',
+    concept: '<strong>Same exponent, different bases — multiply the bases:</strong> mᵃ × nᵃ has <em>a</em> copies of m and <em>a</em> copies of n. Pair them up: each pair gives m×n, so you get a copies of (m×n) = (mn)ᵃ.',
+    sliders: [{key:'m',label:'Base m',min:2,max:5,val:2},{key:'n',label:'Base n',min:2,max:5,val:3},{key:'a',label:'a',min:1,max:4,val:3}],
+    problems: [{m:2,n:3,a:3},{m:3,n:4,a:2},{m:2,n:5,a:3},{m:4,n:2,a:2}],
+    formulaFn(v){ return `${v.m}${sup(v.a)} × ${v.n}${sup(v.a)} = (${v.m*v.n})`; },
+    correctFn(v){ return v.a; },
+    visualFn: visualFnMul,
+    revealFn(v){ return `${v.a} pairs of (${v.m}×${v.n}=${v.m*v.n}). That's (${v.m*v.n})${sup(v.a)} = ${p(v.m*v.n,v.a)}.<br>Rule: same exponent on different bases — multiply the bases, keep the exponent.`; },
+    insight: '<strong>mᵃ × nᵃ = (mn)ᵃ</strong> — group the m values and n values into pairs, each pair is mn, and there are a of them.',
   },
+  // 4: n⁰ = 1, n⁻ᵃ
   {
-    formula:'n⁰ = 1    n⁻ᵃ = 1/nᵃ',
-    words:'Zero exponent = 1. Negative exponent = reciprocal.',
-    sliders:[{key:'n',label:'Base n',min:2,max:8},{key:'a',label:'Exponent a',min:0,max:5}],
-    examples:['2⁰','5⁰','3⁻²','10⁻³'],
-    insight:'n⁰ = nᵃ ÷ nᵃ = 1. And n⁻ᵃ = n⁰ ÷ nᵃ = 1/nᵃ. Negative exponents are just reciprocals.',
+    concept: '<strong>Zero and negative exponents:</strong> n⁰ = 1 because nᵃ÷nᵃ = 1, and subtracting exponents gives n⁰. Negative exponents are just fractions: n⁻ᵃ = 1÷nᵃ. Move the slider to explore both.',
+    sliders: [{key:'n',label:'Base n',min:2,max:8,val:2},{key:'a',label:'Exponent',min:-4,max:4,val:0}],
+    problems: [{n:2,a:0},{n:5,a:0},{n:3,a:-2},{n:2,a:-3}],
+    formulaFn(v){
+      if(v.a===0) return `${v.n}${sup(0)} =`;
+      if(v.a<0)   return `${v.n}${sup(v.a)} = 1 /`;
+      return `${v.n}${sup(v.a)} =`;
+    },
+    correctFn(v){
+      if(v.a===0) return 1;
+      if(v.a<0)   return p(v.n,-v.a);
+      return p(v.n,v.a);
+    },
+    visualFn: visualFnZero,
+    revealFn(v){
+      if(v.a===0) return `${v.n}${sup(0)} = ${v.n}${sup(2)} ÷ ${v.n}${sup(2)} = 1. Any base to the power zero = 1.`;
+      if(v.a<0)   return `${v.n}${sup(v.a)} = 1 ÷ ${v.n}${sup(-v.a)} = 1/${p(v.n,-v.a)}. Negative exponent means "put it in the denominator".`;
+      return `${v.n}${sup(v.a)} = ${p(v.n,v.a)}.`;
+    },
+    insight: '<strong>n⁰ = 1</strong> because nᵃ÷nᵃ = n^(a−a) = n⁰ = 1. <strong>n⁻ᵃ = 1/nᵃ</strong> by the same subtraction rule going below zero.',
   },
 ];
 
-function sup(n){
-  const map={'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
-  return String(n).split('').map(c=>map[c]||c).join('');
+// ══════════════════════════════════════════════════════
+// VISUAL FUNCTIONS
+// ══════════════════════════════════════════════════════
+function visualFn(v, area){
+  area.innerHTML = '';
+  const {n,a,b} = v;
+  const rowA = mkRow(`${n}${sup(a)} = ${a} copies of ${n}`);
+  for(let i=0;i<a;i++) rowA.appendChild(makeBlock(n,0,'highlight-add'));
+  area.appendChild(rowA);
+  const rowB = mkRow(`× ${n}${sup(b)} = ${b} more copies of ${n}`);
+  for(let i=0;i<b;i++) rowB.appendChild(makeBlock(n,1,'highlight-add'));
+  area.appendChild(rowB);
+  const rowC = mkRow(`Together = ${a+b} copies of ${n} = ${n}${sup(a+b)}`);
+  for(let i=0;i<a;i++) rowC.appendChild(makeBlock(n,0));
+  const sep = document.createElement('span'); sep.className='vis-sep'; sep.textContent='|'; rowC.appendChild(sep);
+  for(let i=0;i<b;i++) rowC.appendChild(makeBlock(n,1));
+  area.appendChild(rowC);
 }
-function pow(b,e){return Math.round(Math.pow(b,e));}
 
-function renderBlocks(arr, groupSizes, colors){
-  let html='';
-  let idx=0;
-  groupSizes.forEach((sz,gi)=>{
-    if(gi>0) html+=`<span class="block-sep">×</span>`;
-    for(let i=0;i<sz;i++){
-      html+=`<div class="block" style="background:${colors[gi%colors.length]}">${arr[idx]}</div>`;
-      idx++;
+function visualFnPow(v, area){
+  area.innerHTML = '';
+  const {n,a,b} = v;
+  for(let g=0;g<b;g++){
+    const row = mkRow(`Group ${g+1}: ${n}${sup(a)}`);
+    for(let i=0;i<a;i++) row.appendChild(makeBlock(n,g));
+    if(g<b-1){ const sep=document.createElement('span');sep.className='vis-sep';sep.textContent='×';row.appendChild(sep); }
+    area.appendChild(row);
+  }
+  const total = mkRow(`All together = ${b}×${a} = ${a*b} copies of ${n}`);
+  for(let g=0;g<b;g++) for(let i=0;i<a;i++) total.appendChild(makeBlock(n,g));
+  area.appendChild(total);
+}
+
+function visualFnDiv(v, area){
+  area.innerHTML = '';
+  const a=Math.max(v.a,v.b+1), b=Math.min(v.a-1,v.b), n=v.n;
+  const row = mkRow(`${n}${sup(a)} blocks — click the rust-coloured ones to cancel`);
+  const cancelCount = {count:0};
+  for(let i=0;i<a;i++){
+    const isCancel = i >= (a-b);
+    const blk = makeBlock(n, isCancel?1:0, isCancel?'cancellable':'');
+    if(isCancel){
+      blk.addEventListener('click',()=>{
+        blk.classList.toggle('cancelled');
+        cancelCount.count = row.querySelectorAll('.cancelled').length;
+        const fb = document.getElementById('feedback');
+        if(cancelCount.count===b){
+          fb.textContent = `Cancelled ${b} blocks! ${a-b} remain → ${n}${sup(a-b)}`;
+          fb.className='feedback correct-fb';
+        } else {
+          fb.textContent = `${cancelCount.count}/${b} cancelled…`;
+          fb.className='feedback';
+        }
+      });
     }
-  });
-  return html;
+    row.appendChild(blk);
+  }
+  area.appendChild(row);
+  const hint = document.createElement('div');
+  hint.style.cssText='font-size:12px;color:var(--ink3);margin-top:6px;font-style:italic';
+  hint.textContent=`Click the ${b} rust block${b>1?'s':''} to cancel them — then fill in the exponent above.`;
+  area.appendChild(hint);
 }
 
+function visualFnMul(v, area){
+  area.innerHTML = '';
+  const {m,n,a} = v;
+  const rowM = mkRow(`${m}${sup(a)}: ${a} copies of ${m}`);
+  for(let i=0;i<a;i++) rowM.appendChild(makeBlock(m,0));
+  area.appendChild(rowM);
+  const rowN = mkRow(`${n}${sup(a)}: ${a} copies of ${n}`);
+  for(let i=0;i<a;i++) rowN.appendChild(makeBlock(n,1));
+  area.appendChild(rowN);
+  const rowP = mkRow(`Paired up: ${a} groups of (${m}×${n}=${m*n})`);
+  for(let i=0;i<a;i++){
+    const bg = document.createElement('div');
+    bg.style.cssText=`display:flex;gap:2px;padding:4px;background:rgba(0,0,0,.05);border-radius:6px;margin-right:4px`;
+    bg.appendChild(makeBlock(m,0));
+    bg.appendChild(makeBlock(n,1));
+    rowP.appendChild(bg);
+  }
+  area.appendChild(rowP);
+}
+
+function visualFnZero(v, area){
+  area.innerHTML = '';
+  const {n,a} = v;
+  if(a===0){
+    const row = mkRow(`${n}${sup(2)} ÷ ${n}${sup(2)} = 1 (same number ÷ itself)`);
+    for(let i=0;i<2;i++) row.appendChild(makeBlock(n,0));
+    const sep=document.createElement('span');sep.className='vis-sep';sep.textContent='÷';row.appendChild(sep);
+    for(let i=0;i<2;i++) row.appendChild(makeBlock(n,0,'cancelled'));
+    area.appendChild(row);
+  } else if(a>0){
+    const row = mkRow(`${n}${sup(a)} = ${a} copies of ${n}`);
+    for(let i=0;i<a;i++) row.appendChild(makeBlock(n,0));
+    area.appendChild(row);
+  } else {
+    const row = mkRow(`${n}${sup(-a)} in denominator (negative = flip)`);
+    const fracWrap=document.createElement('div');
+    fracWrap.style.cssText='display:flex;flex-direction:column;align-items:center;gap:3px';
+    const top=document.createElement('div');top.style.cssText='font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink)';top.textContent='1';
+    const line=document.createElement('div');line.style.cssText='width:100%;height:2px;background:var(--ink2)';
+    const bot=document.createElement('div');bot.style.cssText='display:flex;gap:2px';
+    for(let i=0;i<-a;i++) bot.appendChild(makeBlock(n,1));
+    fracWrap.appendChild(top);fracWrap.appendChild(line);fracWrap.appendChild(bot);
+    row.appendChild(fracWrap);
+    area.appendChild(row);
+  }
+}
+
+function mkRow(label){
+  const wrap = document.createElement('div');
+  const lbl  = document.createElement('div');
+  lbl.className='vis-label'; lbl.textContent=label;
+  const row  = document.createElement('div');
+  row.className='vis-row';
+  wrap.appendChild(lbl); wrap.appendChild(row);
+  wrap.style.marginBottom='10px';
+  return row;
+}
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+let currentLaw = 0;
+let currentParams = {n:2,a:3,b:2,m:2};
+let currentProbIdx = 0;
+let answered = false;
+
+// ══════════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════════
 function render(){
-  const L=LAWS[law];
-  const {n,a,b,m}=params;
-  document.getElementById('ruleFormula').textContent=L.formula;
-  document.getElementById('ruleWords').textContent=L.words;
+  const L = LAWS[currentLaw];
+  const v = {...currentParams};
+  answered = false;
+
+  // Concept
+  document.getElementById('concept-text').innerHTML = L.concept;
 
   // Sliders
-  const sdiv=document.getElementById('sliders');
-  sdiv.innerHTML='';
-  L.sliders.forEach(sl=>{
-    const v=params[sl.key];
-    const row=document.createElement('div');
-    row.className='sl-row';
-    row.innerHTML=`<label>${sl.label}</label>
-      <input type="range" min="${sl.min}" max="${sl.max}" value="${v}" oninput="params['${sl.key}']=parseInt(this.value);render()" style="accent-color:var(--blue)">
-      <span class="sl-val" style="color:var(--blue)">${v}</span>`;
-    sdiv.appendChild(row);
+  const sa = document.getElementById('slider-area');
+  sa.innerHTML = '';
+  L.sliders.forEach(sl => {
+    const row = document.createElement('div');
+    row.className = 'ctrl';
+    const lbl=document.createElement('span'); lbl.className='ctrl-lbl'; lbl.textContent=sl.label;
+    const inp=document.createElement('input'); inp.type='range'; inp.min=sl.min; inp.max=sl.max;
+    inp.value=currentParams[sl.key]??sl.val; inp.style.accentColor='var(--teal)';
+    const val=document.createElement('span'); val.className='ctrl-val'; val.textContent=inp.value;
+    inp.addEventListener('input',()=>{
+      currentParams[sl.key]=parseInt(inp.value);
+      val.textContent=inp.value;
+      render();
+    });
+    row.appendChild(lbl); row.appendChild(inp); row.appendChild(val);
+    sa.appendChild(row);
   });
 
-  // Block visualiser
-  const viz=document.getElementById('blockViz');
-  viz.innerHTML='';
-  const c=BLOCK_COLORS;
+  // Visual
+  L.visualFn(v, document.getElementById('visual-area'));
 
-  if(law===0){
-    // nᵃ × nᵇ
-    const blocksA=Array(a).fill(n);
-    const blocksB=Array(b).fill(n);
-    viz.innerHTML=`
-      <div class="blocks-section">
-        <div class="blocks-label">${n}${sup(a)} = ${n} multiplied ${a} times</div>
-        <div class="blocks-row">${blocksA.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}</div>
-      </div>
-      <div class="blocks-section">
-        <div class="blocks-label">× ${n}${sup(b)} = ${n} multiplied ${b} more times</div>
-        <div class="blocks-row">${blocksB.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`).join('')}</div>
-      </div>
-      <div class="blocks-section">
-        <div class="blocks-label">Together = ${n} multiplied ${a+b} times = ${n}${sup(a+b)}</div>
-        <div class="blocks-row">${[...blocksA.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`), ...blocksB.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`)].join('')}</div>
-      </div>
-      <div class="result-row">
-        <span class="result-lhs">${n}${sup(a)} × ${n}${sup(b)} = ${pow(n,a)} × ${pow(n,b)}</span>
-        <span class="result-eq">=</span>
-        <span class="result-rhs">${pow(n,a+b)} = ${n}${sup(a+b)}</span>
-        <span class="result-check">a+b = ${a}+${b} = ${a+b} ✓</span>
-      </div>`;
-  } else if(law===1){
-    // (nᵃ)ᵇ
-    const inner=Array(a).fill(n);
-    const groups=Array(b).fill(a);
-    const allBlocks=Array(a*b).fill(n);
-    let groupsHtml='';
-    for(let g=0;g<b;g++){
-      groupsHtml+=`<span class="block-sep">(</span>`;
-      for(let i=0;i<a;i++) groupsHtml+=`<div class="block" style="background:${c[g%c.length]}">${n}</div>`;
-      groupsHtml+=`<span class="block-sep">)</span>`;
-    }
-    viz.innerHTML=`
-      <div class="blocks-section">
-        <div class="blocks-label">${n}${sup(a)} = one group of ${a} n's</div>
-        <div class="blocks-row">${inner.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}</div>
-      </div>
-      <div class="blocks-section">
-        <div class="blocks-label">(${n}${sup(a)})${sup(b)} = ${b} such groups = ${b}×${a} = ${a*b} n's total</div>
-        <div class="blocks-row">${groupsHtml}</div>
-      </div>
-      <div class="result-row">
-        <span class="result-lhs">(${n}${sup(a)})${sup(b)} = ${pow(n,a)}${sup(b)}</span>
-        <span class="result-eq">=</span>
-        <span class="result-rhs">${pow(n,a*b)} = ${n}${sup(a*b)}</span>
-        <span class="result-check">a×b = ${a}×${b} = ${a*b} ✓</span>
-      </div>`;
-  } else if(law===2){
-    const aS=Math.max(a,b+1), bS=Math.min(a,b);
-    const cancelled=Array(bS).fill(n);
-    const remaining=Array(aS-bS).fill(n);
-    viz.innerHTML=`
-      <div class="blocks-section">
-        <div class="blocks-label">${n}${sup(aS)} = ${aS} copies of ${n}</div>
-        <div class="blocks-row">
-          ${remaining.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}
-          ${cancelled.map(v=>`<div class="block" style="background:${c[0]};opacity:.3;text-decoration:line-through">${v}</div>`).join('')}
-        </div>
-      </div>
-      <div class="blocks-section">
-        <div class="blocks-label">÷ ${n}${sup(bS)} cancels ${bS} copies — ${aS-bS} copies remain</div>
-        <div class="blocks-row">${remaining.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`).join('')}</div>
-      </div>
-      <div class="result-row">
-        <span class="result-lhs">${n}${sup(aS)} ÷ ${n}${sup(bS)} = ${pow(n,aS)} ÷ ${pow(n,bS)}</span>
-        <span class="result-eq">=</span>
-        <span class="result-rhs">${pow(n,aS-bS)} = ${n}${sup(aS-bS)}</span>
-        <span class="result-check">a−b = ${aS}−${bS} = ${aS-bS} ✓</span>
-      </div>`;
-  } else if(law===3){
-    const mBlocks=Array(a).fill(m);
-    const nBlocks=Array(a).fill(n);
-    let paired='';
-    for(let i=0;i<a;i++) paired+=`<div class="block" style="background:${c[0]}">${m}</div><div class="block" style="background:${c[1]}">${n}</div><span class="block-sep" style="font-size:12px">|</span>`;
-    viz.innerHTML=`
-      <div class="blocks-section">
-        <div class="blocks-label">${m}${sup(a)} = ${m} copied ${a} times (blue)</div>
-        <div class="blocks-row">${mBlocks.map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')}</div>
-      </div>
-      <div class="blocks-section">
-        <div class="blocks-label">× ${n}${sup(a)} = ${n} copied ${a} times (red)</div>
-        <div class="blocks-row">${nBlocks.map(v=>`<div class="block" style="background:${c[1]}">${v}</div>`).join('')}</div>
-      </div>
-      <div class="blocks-section">
-        <div class="blocks-label">Regroup: pair each ${m} with a ${n} → ${a} copies of (${m}×${n}=${m*n})</div>
-        <div class="blocks-row">${paired}</div>
-      </div>
-      <div class="result-row">
-        <span class="result-lhs">${m}${sup(a)} × ${n}${sup(a)} = ${pow(m,a)} × ${pow(n,a)}</span>
-        <span class="result-eq">=</span>
-        <span class="result-rhs">${pow(m*n,a)} = (${m*n})${sup(a)}</span>
-        <span class="result-check">(${m}×${n})${sup(a)} ✓</span>
-      </div>`;
-  } else if(law===4){
-    const aVal=params.a;
-    let extraHtml='';
-    if(aVal===0){
-      extraHtml=`<div class="result-row"><span class="result-lhs">${n}${sup(0)} = ${n}${sup(2)} ÷ ${n}${sup(2)} = ${pow(n,2)} ÷ ${pow(n,2)}</span><span class="result-eq">=</span><span class="result-rhs">1</span><span class="result-check">anything ÷ itself = 1 ✓</span></div>`;
-    } else {
-      const frac=`1/${pow(n,aVal)}`;
-      extraHtml=`<div class="result-row"><span class="result-lhs">${n}${sup(-aVal)} = 1 ÷ ${n}${sup(aVal)} = 1 ÷ ${pow(n,aVal)}</span><span class="result-eq">=</span><span class="result-rhs">${frac}</span><span class="result-check">reciprocal ✓</span></div>
-      <div class="result-row"><span class="result-lhs">${n}${sup(aVal)} = 1 ÷ ${n}${sup(-aVal)}</span><span class="result-eq">=</span><span class="result-rhs">${pow(n,aVal)}</span></div>`;
-    }
-    viz.innerHTML=`
-      <div class="blocks-section">
-        <div class="blocks-label">${n}${sup(aVal)} = ${n} multiplied ${aVal} time${aVal!==1?'s':''}</div>
-        <div class="blocks-row">${Array(aVal).fill(n).map(v=>`<div class="block" style="background:${c[0]}">${v}</div>`).join('')||'<span style="color:var(--text3);font-size:13px">Zero copies of n = no multiplication = 1</span>'}</div>
-      </div>${extraHtml}`;
+  // Formula bar with blank
+  const fb = document.getElementById('formula-bar');
+  fb.innerHTML = '';
+  const prefix = document.createElement('span');
+  prefix.className = 'fb-part';
+  prefix.textContent = L.formulaFn(v);
+  fb.appendChild(prefix);
+
+  const blank = document.createElement('input');
+  blank.type='number'; blank.className='fb-blank'; blank.id='blank-input';
+  blank.placeholder='?'; blank.autocomplete='off';
+  blank.addEventListener('keydown',e=>{ if(e.key==='Enter') checkAnswer(); });
+  blank.addEventListener('input',()=>{
+    blank.classList.remove('wrong','correct','shake');
+    document.getElementById('feedback').textContent='';
+  });
+  fb.appendChild(blank);
+
+  // Suffix for law 3 and 4
+  if(currentLaw===3){
+    const suf=document.createElement('span');suf.className='fb-part';suf.textContent='  ← fill in the exponent';suf.style.fontSize='13px';suf.style.color='var(--ink3)';fb.appendChild(suf);
+  }
+  if(currentLaw===4 && v.a<0){
+    const suf=document.createElement('span');suf.className='fb-part';suf.textContent=`  ← fill in ${p(v.n,-v.a)} → what is ${v.n}${sup(-v.a)}?`;suf.style.fontSize='13px';suf.style.color='var(--ink3)';fb.appendChild(suf);
   }
 
-  // Examples
-  const tryRow=document.getElementById('tryRow');
-  tryRow.innerHTML='';
-  L.examples.forEach(ex=>{
-    const b=document.createElement('button');
-    b.className='try-btn';
-    b.textContent=ex;
-    tryRow.appendChild(b);
+  // Reset check state
+  document.getElementById('check-btn').disabled=false;
+  document.getElementById('feedback').textContent='';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('reveal-box').style.display='none';
+
+  // Quick problems
+  renderProblems();
+
+  // Insight
+  document.getElementById('insight-box').innerHTML = L.insight;
+
+  // Focus blank
+  setTimeout(()=>blank.focus(),50);
+}
+
+function renderProblems(){
+  const L = LAWS[currentLaw];
+  const strip = document.getElementById('problems-strip');
+  strip.innerHTML='<span class="prob-lbl">Try:</span>';
+  L.problems.forEach((prob,i)=>{
+    const btn=document.createElement('button');
+    btn.className='prob-btn'+(i===currentProbIdx?' active-prob':'');
+    // Build label
+    let lbl='';
+    if(currentLaw===0) lbl=`${prob.n}${sup(prob.a)}×${prob.n}${sup(prob.b)}`;
+    else if(currentLaw===1) lbl=`(${prob.n}${sup(prob.a)})${sup(prob.b)}`;
+    else if(currentLaw===2) lbl=`${prob.n}${sup(Math.max(prob.a,prob.b+1))}÷${prob.n}${sup(Math.min(prob.a-1,prob.b))}`;
+    else if(currentLaw===3) lbl=`${prob.m}${sup(prob.a)}×${prob.n}${sup(prob.a)}`;
+    else if(currentLaw===4) lbl=`${prob.n}${sup(prob.a)}`;
+    btn.textContent=lbl;
+    btn.addEventListener('click',()=>{
+      currentProbIdx=i;
+      Object.assign(currentParams, prob);
+      render();
+    });
+    strip.appendChild(btn);
   });
-
-  document.getElementById('insight').innerHTML=`<strong>${L.formula}:</strong> ${L.insight}`;
 }
 
-function setLaw(i){
-  law=i;
-  ['lt0','lt1','lt2','lt3','lt4'].forEach((id,j)=>document.getElementById(id).classList.toggle('active',j===i));
-  // Reset to safe defaults
-  params={n:2,a:3,b:4,m:3};
-  if(i===1) params={n:2,a:3,b:2,m:3};
-  if(i===4) params={n:2,a:0,m:3,b:0};
-  render();
+// ══════════════════════════════════════════════════════
+// CHECK
+// ══════════════════════════════════════════════════════
+function checkAnswer(){
+  if(answered) return;
+  const L = LAWS[currentLaw];
+  const v = {...currentParams};
+  const blank = document.getElementById('blank-input');
+  const userVal = parseInt(blank.value);
+  const correct = L.correctFn(v);
+  const fb = document.getElementById('feedback');
+
+  if(isNaN(userVal)){
+    fb.textContent='Enter a number first'; fb.className='feedback wrong-fb';
+    blank.focus(); return;
+  }
+
+  if(userVal===correct){
+    answered=true;
+    blank.classList.add('correct');
+    blank.disabled=true;
+    fb.textContent='Correct! ✓'; fb.className='feedback correct-fb';
+    document.getElementById('check-btn').disabled=true;
+    const rev=document.getElementById('reveal-box');
+    rev.style.display='block';
+    document.getElementById('reveal-body').innerHTML=L.revealFn(v)+`<div class="rb-formula">${L.formulaFn(v)}${correct}</div>`;
+  } else {
+    blank.classList.remove('shake','wrong');
+    void blank.offsetWidth;
+    blank.classList.add('shake','wrong');
+    const diff=userVal-correct;
+    if(Math.abs(diff)===1) fb.textContent=diff>0?'One too high':'One too low';
+    else if(userVal<0&&correct>=0) fb.textContent='Exponents are usually positive here';
+    else fb.textContent=`Not quite — think about what operation to do with the exponents`;
+    fb.className='feedback wrong-fb';
+    blank.select();
+  }
 }
 
+document.getElementById('check-btn').addEventListener('click', checkAnswer);
+
+// ══════════════════════════════════════════════════════
+// LAW TABS
+// ══════════════════════════════════════════════════════
+document.querySelectorAll('.law-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.law-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentLaw=parseInt(tab.dataset.law);
+    currentProbIdx=0;
+    // Load first problem's params
+    const firstProb=LAWS[currentLaw].problems[0];
+    currentParams={n:2,a:3,b:2,m:2,...firstProb};
+    render();
+  });
+});
+
+// Init
+currentParams={...LAWS[0].problems[0]};
 render();
 </script>
 </body>

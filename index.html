@@ -9,484 +9,141 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080c10;
-  --bg2:#0d1219;
-  --bg3:#131820;
-  --surface:#1a2130;
-  --surface2:#202838;
-  --border:#2a3545;
-  --border2:#3a4a60;
-  --phosphor:#39ff8a;
-  --phosphor-dim:#1a8a44;
-  --phosphor-glow:rgba(57,255,138,.18);
-  --amber:#f5a623;
-  --amber-dim:#8a5c10;
-  --amber-glow:rgba(245,166,35,.15);
-  --rust:#ff5c38;
-  --rust-dim:#8a2a10;
-  --violet:#a78bfa;
-  --text:#c8d4e0;
-  --text2:#7a90a8;
-  --text3:#4a5a6a;
-  --serif:'Instrument Serif',Georgia,serif;
-  --mono:'Space Mono',ui-monospace,monospace;
+  --bg:#080c10;--bg2:#0d1219;--bg3:#131820;--surface:#1a2130;--surface2:#202838;
+  --border:#2a3545;--border2:#3a4a60;
+  --phosphor:#39ff8a;--phosphor-dim:#1a8a44;--phosphor-glow:rgba(57,255,138,.18);
+  --amber:#f5a623;--amber-dim:#8a5c10;--amber-glow:rgba(245,166,35,.15);
+  --rust:#ff5c38;--rust-dim:#8a2a10;--violet:#a78bfa;
+  --text:#c8d4e0;--text2:#9ab0c8;--text3:#6a8098;
+  --serif:'Instrument Serif',Georgia,serif;--mono:'Space Mono',ui-monospace,monospace;
 }
 html,body{width:100%;height:100%;overflow:hidden}
-body{
-  font-family:var(--mono);
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  display:flex;
-  flex-direction:column;
-  position:fixed;inset:0;
-  overflow:hidden;
-}
-
-/* grain overlay */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:100;opacity:.5;
-}
-
-/* scanline effect */
-body::after{
-  content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);
-  pointer-events:none;z-index:99;
-}
-
-/* ── TOP STRIP ── */
-.top-strip{
-  display:flex;align-items:center;gap:0;
-  border-bottom:1px solid var(--border);
-  background:var(--bg2);
-  flex-shrink:0;
-  height:42px;
-  padding:0 20px;
-}
-.ts-badge{
-  display:flex;align-items:center;gap:8px;
-  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--text3);
-  border-right:1px solid var(--border);
-  padding-right:16px;margin-right:16px;
-}
-.ts-badge-num{
-  width:18px;height:18px;border-radius:50%;
-  background:var(--phosphor-dim);
-  color:var(--phosphor);
-  font-size:10px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 8px var(--phosphor-glow);
-}
-.ts-title{
-  font-family:var(--serif);
-  font-size:15px;color:var(--text);
-  flex:1;
-}
-.ts-meta{
-  font-size:9px;color:var(--text3);letter-spacing:.08em;
-  display:flex;gap:12px;
-}
+body{font-family:var(--mono);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;position:fixed;inset:0;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:100;opacity:.5}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);pointer-events:none;z-index:99}
+.top-strip{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0;height:42px;padding:0 20px}
+.ts-badge{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border-right:1px solid var(--border);padding-right:16px;margin-right:16px}
+.ts-badge-num{width:18px;height:18px;border-radius:50%;background:var(--phosphor-dim);color:var(--phosphor);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 8px var(--phosphor-glow)}
+.ts-title{font-family:var(--serif);font-size:15px;color:var(--text);flex:1}
+.ts-meta{font-size:10px;color:var(--text3);letter-spacing:.08em;display:flex;gap:12px}
 .ts-dot{width:6px;height:6px;border-radius:50%;background:var(--phosphor);box-shadow:0 0 6px var(--phosphor);animation:blink 2s ease infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* ── LAW SELECTOR RAIL ── */
-.law-rail{
-  display:flex;gap:0;
-  border-bottom:1px solid var(--border);
-  background:var(--bg);
-  flex-shrink:0;
-  overflow-x:auto;scrollbar-width:none;
-}
+.law-rail{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--bg);flex-shrink:0;overflow-x:auto;scrollbar-width:none}
 .law-rail::-webkit-scrollbar{display:none}
-.law-tab{
-  flex:1;min-width:100px;
-  padding:10px 12px;
-  font-family:var(--mono);font-size:11px;font-weight:700;
-  color:var(--text3);
-  background:transparent;border:none;
-  border-right:1px solid var(--border);
-  cursor:pointer;
-  transition:all .18s;
-  text-align:center;line-height:1.5;
-  letter-spacing:.03em;
-  position:relative;
-}
-.law-tab::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  height:2px;background:var(--phosphor);
-  transform:scaleX(0);transform-origin:center;
-  transition:transform .22s cubic-bezier(.4,0,.2,1);
-  box-shadow:0 0 12px var(--phosphor);
-}
+.law-tab{flex:1;min-width:100px;padding:10px 12px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text3);background:transparent;border:none;border-right:1px solid var(--border);cursor:pointer;transition:all .18s;text-align:center;line-height:1.5;letter-spacing:.03em;position:relative}
+.law-tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--phosphor);transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px var(--phosphor)}
 .law-tab:hover{color:var(--text2);background:rgba(57,255,138,.03)}
 .law-tab.active{color:var(--phosphor);background:rgba(57,255,138,.06)}
 .law-tab.active::after{transform:scaleX(1)}
-
-/* ── MAIN LAYOUT ── */
-.main{
-  flex:1;display:grid;
-  grid-template-columns:340px 1fr;
-  grid-template-rows:1fr;
-  overflow:hidden;
-  min-height:0;
-}
-
-/* ── LEFT PANEL ── */
-.left-panel{
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;
-  overflow:hidden;
-  background:var(--bg2);
-}
-.lp-section{
-  padding:16px 18px;
-  border-bottom:1px solid var(--border);
-}
-.lp-label{
-  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--text3);margin-bottom:10px;
-}
-
-/* concept text */
-.concept-text{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:14px;
-  color:var(--text2);
-  line-height:1.7;
-}
-.concept-text strong{
-  font-style:normal;
-  font-weight:400;
-  color:var(--amber);
-  font-family:var(--mono);
-  font-size:12px;
-  letter-spacing:.02em;
-}
-
-/* sliders */
-.slider-row{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:10px;
-}
-.sl-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);min-width:52px}
+.main{flex:1;display:grid;grid-template-columns:340px 1fr;grid-template-rows:1fr;overflow:hidden;min-height:0}
+.left-panel{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--bg2)}
+.lp-section{padding:16px 18px;border-bottom:1px solid var(--border)}
+.lp-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.concept-text{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--text2);line-height:1.7}
+.concept-text strong{font-style:normal;font-weight:400;color:var(--amber);font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sl-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);min-width:52px}
 .sl-track{flex:1;position:relative;height:24px;display:flex;align-items:center}
-input[type=range]{
-  width:100%;height:3px;
-  -webkit-appearance:none;
-  background:var(--border2);
-  border-radius:2px;
-  outline:none;cursor:pointer;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  width:16px;height:16px;
-  border-radius:50%;
-  background:var(--phosphor);
-  box-shadow:0 0 10px var(--phosphor);
-  cursor:pointer;
-  transition:box-shadow .15s;
-}
+input[type=range]{width:100%;height:3px;-webkit-appearance:none;background:var(--border2);border-radius:2px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--phosphor);box-shadow:0 0 10px var(--phosphor);cursor:pointer;transition:box-shadow .15s}
 input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 18px var(--phosphor),0 0 6px #fff}
-.sl-val{
-  font-size:18px;font-weight:700;
-  color:var(--phosphor);
-  text-shadow:0 0 14px var(--phosphor);
-  min-width:26px;text-align:right;
-  font-family:var(--mono);
-}
-
-/* formula bar */
-.formula-bar{
-  display:flex;align-items:center;gap:4px;flex-wrap:wrap;
-  padding:14px 18px;
-  background:var(--bg3);
-  border-bottom:1px solid var(--border);
-}
-.fb-text{
-  font-size:22px;font-weight:700;
-  color:var(--text);
-  font-family:var(--mono);
-  line-height:1;
-}
-.fb-blank{
-  width:56px;height:40px;
-  background:var(--surface);
-  border:1.5px solid var(--phosphor-dim);
-  border-radius:6px;
-  font-family:var(--mono);font-size:22px;font-weight:700;
-  color:var(--phosphor);
-  text-align:center;outline:none;
-  transition:all .18s;
-  text-shadow:0 0 10px var(--phosphor);
-  box-shadow:0 0 10px rgba(57,255,138,.1) inset;
-}
-.fb-blank:focus{
-  border-color:var(--phosphor);
-  box-shadow:0 0 16px var(--phosphor-glow),0 0 10px rgba(57,255,138,.15) inset;
-}
-.fb-blank.wrong{
-  border-color:var(--rust);color:var(--rust);
-  text-shadow:0 0 10px var(--rust);
-  animation:shake .35s ease;
-}
-.fb-blank.correct{
-  border-color:var(--phosphor);
-  color:var(--phosphor);
-  background:rgba(57,255,138,.12);
-  box-shadow:0 0 22px var(--phosphor-glow);
-}
+.sl-val{font-size:18px;font-weight:700;color:var(--phosphor);text-shadow:0 0 14px var(--phosphor);min-width:26px;text-align:right;font-family:var(--mono)}
+.formula-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:14px 18px;background:var(--bg3);border-bottom:1px solid var(--border)}
+.fb-text{font-size:22px;font-weight:700;color:var(--text);font-family:var(--mono);line-height:1}
+.fb-blank{width:56px;height:40px;background:var(--surface);border:1.5px solid var(--phosphor-dim);border-radius:6px;font-family:var(--mono);font-size:22px;font-weight:700;color:var(--phosphor);text-align:center;outline:none;transition:all .18s;text-shadow:0 0 10px var(--phosphor);box-shadow:0 0 10px rgba(57,255,138,.1) inset}
+.fb-blank:focus{border-color:var(--phosphor);box-shadow:0 0 16px var(--phosphor-glow),0 0 10px rgba(57,255,138,.15) inset}
+.fb-blank.wrong{border-color:var(--rust);color:var(--rust);text-shadow:0 0 10px var(--rust);animation:shake .35s ease}
+.fb-blank.correct{border-color:var(--phosphor);color:var(--phosphor);background:rgba(57,255,138,.12);box-shadow:0 0 22px var(--phosphor-glow)}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-
-/* action */
-.action-row{
-  display:flex;align-items:center;gap:10px;
-  padding:12px 18px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
-}
-.check-btn{
-  padding:8px 20px;
-  background:transparent;
-  border:1.5px solid var(--phosphor-dim);
-  border-radius:6px;
-  color:var(--phosphor);
-  font-family:var(--mono);font-size:12px;font-weight:700;
-  letter-spacing:.06em;
-  cursor:pointer;
-  transition:all .15s;
-  text-transform:uppercase;
-}
-.check-btn:hover:not(:disabled){
-  background:rgba(57,255,138,.1);
-  border-color:var(--phosphor);
-  box-shadow:0 0 18px var(--phosphor-glow);
-}
+.action-row{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
+.check-btn{padding:8px 20px;background:transparent;border:1.5px solid var(--phosphor-dim);border-radius:6px;color:var(--phosphor);font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .15s;text-transform:uppercase}
+.check-btn:hover:not(:disabled){background:rgba(57,255,138,.1);border-color:var(--phosphor);box-shadow:0 0 18px var(--phosphor-glow)}
 .check-btn:disabled{opacity:.3;cursor:not-allowed}
-.feedback{
-  font-size:11px;font-weight:700;font-family:var(--mono);
-  letter-spacing:.04em;
-}
+.feedback{font-size:11px;font-weight:700;font-family:var(--mono);letter-spacing:.04em}
 .feedback.ok{color:var(--phosphor);text-shadow:0 0 10px var(--phosphor)}
 .feedback.bad{color:var(--rust)}
-
-/* problems strip */
-.probs-area{
-  padding:12px 18px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
-}
+.probs-area{padding:12px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
 .prob-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.prob-pill{
-  padding:5px 11px;
-  background:var(--surface);
-  border:1px solid var(--border2);
-  border-radius:20px;
-  font-family:var(--mono);font-size:11px;font-weight:700;
-  color:var(--text2);cursor:pointer;
-  transition:all .14s;
-}
+.prob-pill{padding:5px 11px;background:var(--surface);border:1px solid var(--border2);border-radius:20px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text2);cursor:pointer;transition:all .14s}
 .prob-pill:hover{border-color:var(--phosphor-dim);color:var(--text)}
-.prob-pill.active{
-  background:rgba(57,255,138,.1);
-  border-color:var(--phosphor);
-  color:var(--phosphor);
-  box-shadow:0 0 12px var(--phosphor-glow);
-}
-
-/* reveal box */
-.reveal-box{
-  display:none;
-  margin:12px 18px;
-  padding:12px 14px;
-  background:rgba(57,255,138,.05);
-  border:1px solid var(--phosphor-dim);
-  border-radius:8px;
-  font-size:12px;line-height:1.7;
-  color:var(--text2);
-  flex-shrink:0;
-}
+.prob-pill.active{background:rgba(57,255,138,.1);border-color:var(--phosphor);color:var(--phosphor);box-shadow:0 0 12px var(--phosphor-glow)}
+.reveal-box{display:none;margin:12px 18px;padding:12px 14px;background:rgba(57,255,138,.05);border:1px solid var(--phosphor-dim);border-radius:8px;font-size:12px;line-height:1.7;color:var(--text2);flex-shrink:0}
 .reveal-box.show{display:block}
 .reveal-box strong{color:var(--phosphor);font-weight:400}
-.reveal-formula{
-  margin-top:8px;
-  font-family:var(--mono);font-size:14px;
-  color:var(--phosphor);
-  text-shadow:0 0 12px var(--phosphor);
-}
-
-/* insight */
-.insight{
-  padding:14px 18px;
-  font-size:11px;line-height:1.7;
-  color:var(--text3);
-  flex:1;overflow-y:auto;
-}
+.reveal-formula{margin-top:8px;font-family:var(--mono);font-size:14px;color:var(--phosphor);text-shadow:0 0 12px var(--phosphor)}
+.insight{padding:14px 18px;font-size:11px;line-height:1.7;color:var(--text3);flex:1;overflow-y:auto}
 .insight strong{color:var(--amber)}
-
-/* ── RIGHT PANEL ── */
-.right-panel{
-  display:flex;flex-direction:column;
-  overflow:hidden;
-  background:var(--bg);
-}
-.rp-header{
-  padding:14px 20px;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-  flex-shrink:0;
-}
-.rp-title{
-  font-family:var(--serif);font-size:13px;
-  color:var(--text3);font-style:italic;
-  flex:1;
-}
-.rp-counter{
-  font-size:10px;color:var(--text3);
-  font-family:var(--mono);
-}
-
-.visual-canvas{
-  flex:1;overflow-y:auto;overflow-x:hidden;
-  padding:20px;
-  scrollbar-width:thin;
-  scrollbar-color:var(--border) transparent;
-}
+.right-panel{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.rp-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.rp-title{font-family:var(--serif);font-size:13px;color:var(--text3);font-style:italic;flex:1}
+.rp-counter{font-size:10px;color:var(--text3);font-family:var(--mono)}
+.visual-canvas{flex:1;overflow-y:auto;overflow-x:hidden;padding:20px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .visual-canvas::-webkit-scrollbar{width:4px}
 .visual-canvas::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
-/* block group */
-.block-group{
-  margin-bottom:22px;
-}
-.bg-label{
-  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--text3);margin-bottom:8px;
-  display:flex;align-items:center;gap:8px;
-}
-.bg-label::after{
-  content:'';flex:1;height:1px;background:var(--border);
-}
-.blocks-row{
-  display:flex;flex-wrap:wrap;gap:5px;min-height:36px;align-items:center;
-}
-
-/* individual block */
-.blk{
-  width:32px;height:32px;
-  border-radius:5px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:12px;font-weight:700;
-  color:#fff;
-  position:relative;
-  cursor:default;
-  transition:all .2s;
-  flex-shrink:0;
-}
-.blk::after{
-  content:'';position:absolute;inset:0;border-radius:5px;
-  background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);
-  pointer-events:none;
-}
+.block-group{margin-bottom:22px}
+.bg-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.bg-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.blocks-row{display:flex;flex-wrap:wrap;gap:5px;min-height:36px;align-items:center}
+.blk{width:32px;height:32px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;position:relative;cursor:default;transition:all .2s;flex-shrink:0}
+.blk::after{content:'';position:absolute;inset:0;border-radius:5px;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);pointer-events:none}
 .blk.anim-in{animation:blkIn .28s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes blkIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
-
 .blk.cancellable{cursor:pointer}
 .blk.cancellable:hover{transform:scale(1.12);filter:brightness(1.3)}
-.blk.cancelled{
-  opacity:.15;
-  transform:scale(.82);
-  filter:grayscale(1);
-}
-.blk.locked{
-  box-shadow:0 0 18px currentColor;
-  animation:lockIn .45s ease both;
-}
+.blk.cancelled{opacity:.15;transform:scale(.82);filter:grayscale(1)}
+.blk.locked{box-shadow:0 0 18px currentColor;animation:lockIn .45s ease both}
 @keyframes lockIn{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
-
-/* block colors */
-.bc0{background:#1d7a72;border:1px solid #2aaa9a;color:#80ffe8;}
-.bc1{background:#8a3a2a;border:1px solid #c05038;color:#ffb8a0;}
-.bc2{background:#7a6010;border:1px solid #c09820;color:#ffe888;}
-.bc3{background:#2a5a38;border:1px solid #3a8a50;color:#88ffa0;}
-.bc4{background:#4a3a8a;border:1px solid #7a5aaa;color:#d0b8ff;}
-
-/* separator */
-.blk-sep{
-  font-size:20px;font-weight:700;
-  color:var(--text3);padding:0 8px;
-  font-family:var(--mono);
-  align-self:center;
-}
-
-/* group wrapper for law 1 */
-.blk-cluster{
-  display:flex;gap:4px;align-items:center;
-  padding:5px 6px;
-  border-radius:8px;
-  border:1px solid var(--border2);
-  background:rgba(255,255,255,.02);
-  margin-right:4px;
-}
-.blk-cluster-label{
-  font-size:9px;color:var(--text3);font-family:var(--mono);
-  margin-bottom:4px;text-align:center;letter-spacing:.04em;
-}
-
-/* fraction visual for zero/neg */
-.frac-wrap{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-}
-.frac-num{
-  font-family:var(--mono);font-size:16px;font-weight:700;
-  color:var(--phosphor);
-}
-.frac-line{
-  width:60px;height:1.5px;
-  background:var(--text2);
-}
+.bc0{background:#1d7a72;border:1px solid #2aaa9a;color:#80ffe8}
+.bc1{background:#8a3a2a;border:1px solid #c05038;color:#ffb8a0}
+.bc2{background:#7a6010;border:1px solid #c09820;color:#ffe888}
+.bc3{background:#2a5a38;border:1px solid #3a8a50;color:#88ffa0}
+.bc4{background:#4a3a8a;border:1px solid #7a5aaa;color:#d0b8ff}
+.blk-sep{font-size:20px;font-weight:700;color:var(--text3);padding:0 8px;font-family:var(--mono);align-self:center}
+.blk-cluster{display:flex;gap:4px;align-items:center;padding:5px 6px;border-radius:8px;border:1px solid var(--border2);background:rgba(255,255,255,.02);margin-right:4px}
+.blk-cluster-label{font-size:10px;color:var(--text3);font-family:var(--mono);margin-bottom:4px;text-align:center;letter-spacing:.04em}
+.frac-wrap{display:flex;flex-direction:column;align-items:center;gap:3px}
+.frac-num{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--phosphor)}
+.frac-line{width:60px;height:1.5px;background:var(--text2)}
 .frac-den{display:flex;gap:4px}
-
-/* ── CORRECT FLASH ── */
-.flash-overlay{
-  position:fixed;inset:0;
-  pointer-events:none;
-  z-index:200;
-  background:radial-gradient(ellipse at center, rgba(57,255,138,.12) 0%, transparent 70%);
-  opacity:0;transition:opacity .15s;
-}
+.flash-overlay{position:fixed;inset:0;pointer-events:none;z-index:200;background:radial-gradient(ellipse at center,rgba(57,255,138,.12) 0%,transparent 70%);opacity:0;transition:opacity .15s}
 .flash-overlay.flash{opacity:1}
 
-/* ── RESPONSIVE ── */
-@media(max-width:700px){
-  .main{grid-template-columns:1fr;grid-template-rows:auto 1fr}
-  .left-panel{max-height:55vh}
-  .top-strip .ts-meta{display:none}
+/* ══ MOBILE ══ */
+@media(max-width:768px){
+  html,body{overflow:auto;height:auto}
+  body{position:static;display:flex;flex-direction:column;min-height:100dvh}
+  .top-strip{height:auto;padding:8px 14px;flex-wrap:wrap;gap:6px}
+  .ts-meta{display:none}
+  .law-rail{overflow-x:auto}
+  .law-tab{min-width:80px;font-size:11px;padding:8px 6px}
+  .main{grid-template-columns:1fr}
+  .left-panel{max-height:none;border-right:none;border-bottom:1px solid var(--border)}
+  .lp-section{padding:12px 14px}
+  .concept-text{font-size:13px}
+  .formula-bar{flex-wrap:wrap;gap:6px;padding:12px 14px}
+  .fb-text{font-size:18px}
+  .fb-blank{width:50px;height:38px;font-size:18px}
+  .action-row,.probs-area{padding:10px 14px}
+  .right-panel{min-height:300px}
+  .rp-header{padding:10px 14px}
+  .visual-canvas{padding:12px}
+  .blk{width:28px;height:28px;font-size:11px}
+  .reveal-box{margin:8px 14px}
+  .insight{font-size:12px;padding:10px 14px}
 }
-</style>
+@media(max-width:480px){
+  .law-tab{min-width:68px;font-size:10px}
+  .fb-text{font-size:16px}
+  .fb-blank{width:42px;font-size:16px}
+}</style>
 </head>
 <body>
-
 <div class="flash-overlay" id="flash"></div>
-
-<!-- TOP STRIP -->
 <div class="top-strip">
-  <div class="ts-badge">
-    <div class="ts-badge-num">2</div>
-    CH·02 POWER PLAY
-  </div>
+  <div class="ts-badge"><div class="ts-badge-num">2</div>CH·02 POWER PLAY</div>
   <div class="ts-title">Laws of Exponents</div>
-  <div class="ts-meta">
-    <span><span style="color:var(--phosphor)">◆</span> GANITA PRAKASH GR·8</span>
-    <span style="display:flex;align-items:center;gap:5px"><span class="ts-dot"></span>LIVE</span>
-  </div>
+  <div class="ts-meta"><span><span style="color:var(--phosphor)">◆</span> GANITA PRAKASH GR·8</span><span style="display:flex;align-items:center;gap:5px"><span class="ts-dot"></span>LIVE</span></div>
 </div>
-
-<!-- LAW SELECTOR -->
 <div class="law-rail" id="law-rail">
   <button class="law-tab active" data-law="0">nᵃ × nᵇ<br>= nᵃ⁺ᵇ</button>
   <button class="law-tab" data-law="1">(nᵃ)ᵇ<br>= nᵃˣᵇ</button>
@@ -494,377 +151,55 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 18px var(--phosphor
   <button class="law-tab" data-law="3">mᵃ × nᵃ<br>= (mn)ᵃ</button>
   <button class="law-tab" data-law="4">n⁰ &amp; n⁻ᵃ</button>
 </div>
-
-<!-- MAIN -->
 <div class="main">
-
-  <!-- LEFT PANEL -->
   <div class="left-panel">
-    <div class="lp-section">
-      <div class="lp-label">Concept</div>
-      <div class="concept-text" id="concept-text"></div>
-    </div>
-
-    <div class="lp-section">
-      <div class="lp-label">Parameters</div>
-      <div id="slider-area"></div>
-    </div>
-
+    <div class="lp-section"><div class="lp-label">Concept</div><div class="concept-text" id="concept-text"></div></div>
+    <div class="lp-section"><div class="lp-label">Parameters</div><div id="slider-area"></div></div>
     <div class="formula-bar" id="formula-bar"></div>
-
-    <div class="action-row">
-      <button class="check-btn" id="check-btn">Verify</button>
-      <span class="feedback" id="feedback"></span>
-    </div>
-
-    <div class="probs-area">
-      <div class="lp-label">Quick problems</div>
-      <div class="prob-pills" id="prob-pills"></div>
-    </div>
-
-    <div class="reveal-box" id="reveal-box">
-      <div id="reveal-body"></div>
-      <div class="reveal-formula" id="reveal-formula"></div>
-    </div>
-
+    <div class="action-row"><button class="check-btn" id="check-btn">Verify</button><span class="feedback" id="feedback"></span></div>
+    <div class="probs-area"><div class="lp-label">Quick problems</div><div class="prob-pills" id="prob-pills"></div></div>
+    <div class="reveal-box" id="reveal-box"><div id="reveal-body"></div><div class="reveal-formula" id="reveal-formula"></div></div>
     <div class="insight" id="insight-box"></div>
   </div>
-
-  <!-- RIGHT PANEL -->
   <div class="right-panel">
-    <div class="rp-header">
-      <div class="rp-title">Block visualisation — count the copies of the base</div>
-      <div class="rp-counter" id="rp-counter"></div>
-    </div>
+    <div class="rp-header"><div class="rp-title">Block visualisation — count the copies of the base</div><div class="rp-counter" id="rp-counter"></div></div>
     <div class="visual-canvas" id="visual-canvas"></div>
   </div>
-
 </div>
-
 <script>
-// ── HELPERS ─────────────────────────────────────────────────
-function sup(n){
-  return String(n).split('').map(c=>({'−':'⁻','-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'}[c]||c)).join('');
-}
+function sup(n){return String(n).split('').map(c=>({'−':'⁻','-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'}[c]||c)).join('')}
 function pow(b,e){return Math.round(Math.pow(b,Math.abs(e)));}
-
-const COLORS = ['bc0','bc1','bc2','bc3','bc4'];
-
-function makeBlk(label, ci, delay=0){
-  const d = document.createElement('div');
-  d.className = `blk ${COLORS[ci%5]} anim-in`;
-  d.textContent = label;
-  d.style.animationDelay = delay + 'ms';
-  return d;
-}
-
-function makeSep(ch){
-  const s = document.createElement('span');
-  s.className = 'blk-sep';
-  s.textContent = ch;
-  return s;
-}
-
-function makeGroup(label){
-  const wrap = document.createElement('div');
-  wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.alignItems='center';
-  const lbl = document.createElement('div');
-  lbl.className='blk-cluster-label';lbl.textContent=label;
-  const row = document.createElement('div');
-  row.className='blk-cluster';
-  wrap.appendChild(lbl);wrap.appendChild(row);
-  return {wrap,row};
-}
-
-function addGroup(canvas, groupLabel, rows){
-  const grp = document.createElement('div');
-  grp.className = 'block-group';
-  const lbl = document.createElement('div');
-  lbl.className = 'bg-label';
-  lbl.textContent = groupLabel;
-  grp.appendChild(lbl);
-  rows.forEach(({label,blocks})=>{
-    const br = document.createElement('div');
-    br.className = 'blocks-row';
-    blocks(br);
-    grp.appendChild(br);
-  });
-  canvas.appendChild(grp);
-}
-
-// ── LAW DATA ────────────────────────────────────────────────
-const LAWS = [
-  {
-    concept: '<strong>Add exponents</strong> when multiplying same base. nᵃ counts a copies of n. nᵇ counts b more copies. Together: a+b copies = nᵃ⁺ᵇ.',
-    sliders:[{key:'n',label:'Base n',min:2,max:6,val:2},{key:'a',label:'a',min:1,max:5,val:3},{key:'b',label:'b',min:1,max:5,val:2}],
-    problems:[{n:2,a:3,b:4},{n:3,a:2,b:3},{n:5,a:1,b:4},{n:4,a:2,b:2}],
-    formulaFn(v){return `${v.n}${sup(v.a)} × ${v.n}${sup(v.b)} = ${v.n}`;},
-    correctFn(v){return v.a+v.b;},
-    revealBodyFn(v){return `Counted ${v.a} + ${v.b} = <strong>${v.a+v.b}</strong> blocks of ${v.n}. Result: ${v.n}${sup(v.a+v.b)} = ${pow(v.n,v.a+v.b)}.`;},
-    revealFormulaFn(v){return `${v.n}${sup(v.a)} × ${v.n}${sup(v.b)} = ${v.n}${sup(v.a+v.b)}`;},
-    visualFn(v,canvas){
-      addGroup(canvas,`${v.n}${sup(v.a)} — first group (${v.a} copies of ${v.n})`,
-        [{label:'',blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,0,i*35));}}]);
-      addGroup(canvas,`${v.n}${sup(v.b)} — second group (${v.b} copies)`,
-        [{label:'',blocks(row){for(let i=0;i<v.b;i++)row.appendChild(makeBlk(v.n,1,i*35));}}]);
-      addGroup(canvas,`Together: ${v.a}+${v.b} = ${v.a+v.b} copies of ${v.n}`,
-        [{label:'',blocks(row){
-          for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,0,i*25));
-          row.appendChild(makeSep('|'));
-          for(let i=0;i<v.b;i++)row.appendChild(makeBlk(v.n,1,(v.a+i)*25));
-        }}]);
-    },
-    insight:'<strong>nᵃ × nᵇ = nᵃ⁺ᵇ</strong> — the exponent is just a count of how many times you multiply by n. Doing it a times, then b more, is a+b times total.',
-  },
-  {
-    concept: '<strong>Multiply exponents</strong> when raising a power to a power. (nᵃ)ᵇ makes b groups each with a copies — total a×b copies = nᵃˣᵇ.',
-    sliders:[{key:'n',label:'Base n',min:2,max:4,val:2},{key:'a',label:'a',min:1,max:4,val:3},{key:'b',label:'b',min:1,max:4,val:2}],
-    problems:[{n:2,a:3,b:2},{n:3,a:2,b:3},{n:2,a:4,b:2},{n:4,a:2,b:3}],
-    formulaFn(v){return `(${v.n}${sup(v.a)})${sup(v.b)} = ${v.n}`;},
-    correctFn(v){return v.a*v.b;},
-    revealBodyFn(v){return `${v.b} groups × ${v.a} copies each = <strong>${v.a*v.b}</strong> copies of ${v.n}. Result: ${v.n}${sup(v.a*v.b)} = ${pow(v.n,v.a*v.b)}.`;},
-    revealFormulaFn(v){return `(${v.n}${sup(v.a)})${sup(v.b)} = ${v.n}${sup(v.a*v.b)}`;},
-    visualFn(v,canvas){
-      for(let g=0;g<v.b;g++){
-        addGroup(canvas,`Group ${g+1} of ${v.b}: ${v.n}${sup(v.a)} = ${v.a} copies`,
-          [{label:'',blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,g,i*35));}}]);
-      }
-      addGroup(canvas,`All ${v.b} groups together = ${v.b}×${v.a} = ${v.a*v.b} copies of ${v.n}`,
-        [{label:'',blocks(row){
-          for(let g=0;g<v.b;g++){
-            for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,g,(g*v.a+i)*22));
-            if(g<v.b-1)row.appendChild(makeSep('·'));
-          }
-        }}]);
-    },
-    insight:'<strong>(nᵃ)ᵇ = nᵃˣᵇ</strong> — b groups of a copies each = a×b copies total. The exponents multiply.',
-  },
-  {
-    concept: '<strong>Subtract exponents</strong> when dividing same base. nᵃ ÷ nᵇ cancels b copies top and bottom — only a−b survive.',
-    sliders:[{key:'n',label:'Base n',min:2,max:5,val:2},{key:'a',label:'a',min:3,max:7,val:5},{key:'b',label:'b',min:1,max:4,val:2}],
-    problems:[{n:2,a:6,b:2},{n:3,a:5,b:3},{n:4,a:4,b:1},{n:5,a:5,b:2}],
-    formulaFn(v){
-      const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);
-      return `${v.n}${sup(a)} ÷ ${v.n}${sup(b)} = ${v.n}`;
-    },
-    correctFn(v){
-      const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);
-      return a-b;
-    },
-    revealBodyFn(v){
-      const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);
-      return `Cancelled ${b} pairs → <strong>${a-b}</strong> survive. Result: ${v.n}${sup(a-b)} = ${pow(v.n,a-b)}.`;
-    },
-    revealFormulaFn(v){
-      const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);
-      return `${v.n}${sup(a)} ÷ ${v.n}${sup(b)} = ${v.n}${sup(a-b)}`;
-    },
-    visualFn(v,canvas){
-      const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);
-      const grp=document.createElement('div');grp.className='block-group';
-      const lbl=document.createElement('div');lbl.className='bg-label';
-      lbl.textContent=`${v.n}${sup(a)} — click the ${b} rust block${b>1?'s':''} to cancel them`;
-      grp.appendChild(lbl);
-      const row=document.createElement('div');row.className='blocks-row';
-      const cancelState={count:0};
-      for(let i=0;i<a;i++){
-        const isC=i>=(a-b);
-        const blk=makeBlk(v.n,isC?1:0,i*30);
-        if(isC){
-          blk.classList.add('cancellable');
-          blk.addEventListener('click',()=>{
-            blk.classList.toggle('cancelled');
-            cancelState.count=row.querySelectorAll('.cancelled').length;
-            const fb=document.getElementById('feedback');
-            if(cancelState.count===b){
-              fb.textContent=`✓ ${b} cancelled — ${a-b} remain`;fb.className='feedback ok';
-            } else {
-              fb.textContent=`${cancelState.count}/${b} cancelled`;fb.className='feedback';
-            }
-          });
-        }
-        row.appendChild(blk);
-      }
-      grp.appendChild(row);
-      const hint=document.createElement('div');
-      hint.style.cssText='font-size:10px;color:var(--text3);margin-top:8px;font-style:italic';
-      hint.textContent=`The rust blocks cancel against the divisor. Count the teal survivors.`;
-      grp.appendChild(hint);
-      canvas.appendChild(grp);
-    },
-    insight:'<strong>nᵃ ÷ nᵇ = nᵃ⁻ᵇ</strong> — b copies appear in both numerator and denominator, so they cancel out. Only a−b copies survive.',
-  },
-  {
-    concept: '<strong>Multiply the bases</strong> when the exponent is the same. mᵃ × nᵃ has a copies of m and a copies of n. Pair them up: a pairs of (m×n) = (mn)ᵃ.',
-    sliders:[{key:'m',label:'Base m',min:2,max:5,val:2},{key:'n',label:'Base n',min:2,max:5,val:3},{key:'a',label:'a',min:1,max:4,val:3}],
-    problems:[{m:2,n:3,a:3},{m:3,n:4,a:2},{m:2,n:5,a:3},{m:4,n:2,a:2}],
-    formulaFn(v){return `${v.m}${sup(v.a)} × ${v.n}${sup(v.a)} = (${v.m*v.n})`;},
-    correctFn(v){return v.a;},
-    revealBodyFn(v){return `<strong>${v.a}</strong> pairs of (${v.m}×${v.n}=${v.m*v.n}). Result: (${v.m*v.n})${sup(v.a)} = ${pow(v.m*v.n,v.a)}.`;},
-    revealFormulaFn(v){return `${v.m}${sup(v.a)} × ${v.n}${sup(v.a)} = (${v.m*v.n})${sup(v.a)}`;},
-    visualFn(v,canvas){
-      addGroup(canvas,`${v.m}${sup(v.a)}: ${v.a} copies of ${v.m}`,
-        [{label:'',blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.m,0,i*35));}}]);
-      addGroup(canvas,`${v.n}${sup(v.a)}: ${v.a} copies of ${v.n}`,
-        [{label:'',blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,1,i*35));}}]);
-      const pairGrp=document.createElement('div');pairGrp.className='block-group';
-      const pairLbl=document.createElement('div');pairLbl.className='bg-label';
-      pairLbl.textContent=`${v.a} pairs of (${v.m}×${v.n}=${v.m*v.n})`;
-      pairGrp.appendChild(pairLbl);
-      const pairRow=document.createElement('div');pairRow.className='blocks-row';
-      for(let i=0;i<v.a;i++){
-        const {wrap,row}=makeGroup(`pair ${i+1}`);
-        row.appendChild(makeBlk(v.m,0,i*60));
-        row.appendChild(makeBlk(v.n,1,i*60+35));
-        pairRow.appendChild(wrap);
-      }
-      pairGrp.appendChild(pairRow);
-      canvas.appendChild(pairGrp);
-    },
-    insight:'<strong>mᵃ × nᵃ = (mn)ᵃ</strong> — same exponent, different bases. Group m and n values into pairs — each pair is m×n, and there are a of them.',
-  },
-  {
-    concept: '<strong>Zero & negative exponents.</strong> n⁰ = 1 because nᵃ ÷ nᵃ = n^(a−a) = n⁰ = 1. Negative exponent = fraction: n⁻ᵃ = 1/nᵃ.',
-    sliders:[{key:'n',label:'Base n',min:2,max:8,val:2},{key:'a',label:'Exponent',min:-4,max:4,val:0}],
-    problems:[{n:2,a:0},{n:5,a:0},{n:3,a:-2},{n:2,a:-3}],
-    formulaFn(v){
-      if(v.a===0)return `${v.n}${sup(0)} =`;
-      if(v.a<0)return `${v.n}${sup(v.a)} = 1 /`;
-      return `${v.n}${sup(v.a)} =`;
-    },
-    correctFn(v){
-      if(v.a===0)return 1;
-      if(v.a<0)return pow(v.n,-v.a);
-      return pow(v.n,v.a);
-    },
-    revealBodyFn(v){
-      if(v.a===0)return `${v.n}² ÷ ${v.n}² = 1. <strong>Any base to the power 0 = 1.</strong>`;
-      if(v.a<0)return `${v.n}${sup(v.a)} = 1 ÷ ${v.n}${sup(-v.a)} = 1/${pow(v.n,-v.a)}. <strong>Negative exponent = flip to denominator.</strong>`;
-      return `${v.n}${sup(v.a)} = ${pow(v.n,v.a)}.`;
-    },
-    revealFormulaFn(v){
-      if(v.a===0)return `${v.n}${sup(0)} = 1`;
-      if(v.a<0)return `${v.n}${sup(v.a)} = 1/${pow(v.n,-v.a)}`;
-      return `${v.n}${sup(v.a)} = ${pow(v.n,v.a)}`;
-    },
-    visualFn(v,canvas){
-      const {n,a}=v;
-      if(a===0){
-        addGroup(canvas,`${n}² ÷ ${n}² = 1 (same number ÷ itself)`,
-          [{label:'',blocks(row){
-            for(let i=0;i<2;i++)row.appendChild(makeBlk(n,0,i*35));
-            row.appendChild(makeSep('÷'));
-            for(let i=0;i<2;i++){const b=makeBlk(n,0,(2+i)*35);b.classList.add('cancelled');row.appendChild(b);}
-          }}]);
-        addGroup(canvas,'Result: 1',
-          [{label:'',blocks(row){
-            const b=document.createElement('div');
-            b.style.cssText='font-size:32px;font-weight:700;font-family:var(--mono);color:var(--phosphor);text-shadow:0 0 20px var(--phosphor);';
-            b.textContent='1';row.appendChild(b);
-          }}]);
-      } else if(a>0){
-        addGroup(canvas,`${n}${sup(a)}: ${a} copies of ${n}`,
-          [{label:'',blocks(row){for(let i=0;i<a;i++)row.appendChild(makeBlk(n,0,i*35));}}]);
-      } else {
-        const d=-a;
-        const fracGrp=document.createElement('div');fracGrp.className='block-group';
-        const fl=document.createElement('div');fl.className='bg-label';fl.textContent=`${n}${sup(a)} — ${d} copies of ${n} in the denominator`;
-        fracGrp.appendChild(fl);
-        const fw=document.createElement('div');fw.style.cssText='display:flex;align-items:center;gap:14px;padding:10px 0';
-        const frac=document.createElement('div');frac.className='frac-wrap';
-        const fn=document.createElement('div');fn.className='frac-num';fn.textContent='1';
-        const fline=document.createElement('div');fline.className='frac-line';
-        const fden=document.createElement('div');fden.className='frac-den';
-        for(let i=0;i<d;i++)fden.appendChild(makeBlk(n,1,i*35));
-        frac.appendChild(fn);frac.appendChild(fline);frac.appendChild(fden);
-        fw.appendChild(frac);
-        const fval=document.createElement('div');
-        fval.style.cssText='font-size:13px;color:var(--text3);font-family:var(--mono);';
-        fval.textContent=`= 1/${pow(n,d)} = ${1/pow(n,d)}`;
-        fw.appendChild(fval);
-        fracGrp.appendChild(fw);
-        canvas.appendChild(fracGrp);
-      }
-    },
-    insight:'<strong>n⁰ = 1</strong> because nᵃ÷nᵃ = n^(a−a) = n⁰ = 1. <strong>n⁻ᵃ = 1/nᵃ</strong> — the subtraction rule going below zero.',
-  },
+const COLORS=['bc0','bc1','bc2','bc3','bc4'];
+function makeBlk(label,ci,delay=0){const d=document.createElement('div');d.className=`blk ${COLORS[ci%5]} anim-in`;d.textContent=label;d.style.animationDelay=delay+'ms';return d;}
+function makeSep(ch){const s=document.createElement('span');s.className='blk-sep';s.textContent=ch;return s;}
+function makeGroup(label){const wrap=document.createElement('div');wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.alignItems='center';const lbl=document.createElement('div');lbl.className='blk-cluster-label';lbl.textContent=label;const row=document.createElement('div');row.className='blk-cluster';wrap.appendChild(lbl);wrap.appendChild(row);return{wrap,row};}
+function addGroup(canvas,groupLabel,rows){const grp=document.createElement('div');grp.className='block-group';const lbl=document.createElement('div');lbl.className='bg-label';lbl.textContent=groupLabel;grp.appendChild(lbl);rows.forEach(({blocks})=>{const br=document.createElement('div');br.className='blocks-row';blocks(br);grp.appendChild(br);});canvas.appendChild(grp);}
+const LAWS=[
+  {concept:'<strong>Add exponents</strong> when multiplying same base. nᵃ counts a copies of n. nᵇ counts b more copies. Together: a+b copies = nᵃ⁺ᵇ.',sliders:[{key:'n',label:'Base n',min:2,max:6,val:2},{key:'a',label:'a',min:1,max:5,val:3},{key:'b',label:'b',min:1,max:5,val:2}],problems:[{n:2,a:3,b:4},{n:3,a:2,b:3},{n:5,a:1,b:4},{n:4,a:2,b:2}],formulaFn(v){return `${v.n}${sup(v.a)} × ${v.n}${sup(v.b)} = ${v.n}`;},correctFn(v){return v.a+v.b;},revealBodyFn(v){return `Counted ${v.a} + ${v.b} = <strong>${v.a+v.b}</strong> blocks of ${v.n}. Result: ${v.n}${sup(v.a+v.b)} = ${pow(v.n,v.a+v.b)}.`;},revealFormulaFn(v){return `${v.n}${sup(v.a)} × ${v.n}${sup(v.b)} = ${v.n}${sup(v.a+v.b)}`;},visualFn(v,canvas){addGroup(canvas,`${v.n}${sup(v.a)} — first group (${v.a} copies of ${v.n})`,[{blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,0,i*35));}}]);addGroup(canvas,`${v.n}${sup(v.b)} — second group (${v.b} copies)`,[{blocks(row){for(let i=0;i<v.b;i++)row.appendChild(makeBlk(v.n,1,i*35));}}]);addGroup(canvas,`Together: ${v.a}+${v.b} = ${v.a+v.b} copies of ${v.n}`,[{blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,0,i*25));row.appendChild(makeSep('|'));for(let i=0;i<v.b;i++)row.appendChild(makeBlk(v.n,1,(v.a+i)*25));}}]);},insight:'<strong>nᵃ × nᵇ = nᵃ⁺ᵇ</strong> — the exponent is just a count of how many times you multiply by n. Doing it a times, then b more, is a+b times total.'},
+  {concept:'<strong>Multiply exponents</strong> when raising a power to a power. (nᵃ)ᵇ makes b groups each with a copies — total a×b copies = nᵃˣᵇ.',sliders:[{key:'n',label:'Base n',min:2,max:4,val:2},{key:'a',label:'a',min:1,max:4,val:3},{key:'b',label:'b',min:1,max:4,val:2}],problems:[{n:2,a:3,b:2},{n:3,a:2,b:3},{n:2,a:4,b:2},{n:4,a:2,b:3}],formulaFn(v){return `(${v.n}${sup(v.a)})${sup(v.b)} = ${v.n}`;},correctFn(v){return v.a*v.b;},revealBodyFn(v){return `${v.b} groups × ${v.a} copies each = <strong>${v.a*v.b}</strong> copies of ${v.n}. Result: ${v.n}${sup(v.a*v.b)} = ${pow(v.n,v.a*v.b)}.`;},revealFormulaFn(v){return `(${v.n}${sup(v.a)})${sup(v.b)} = ${v.n}${sup(v.a*v.b)}`;},visualFn(v,canvas){for(let g=0;g<v.b;g++){addGroup(canvas,`Group ${g+1} of ${v.b}: ${v.n}${sup(v.a)} = ${v.a} copies`,[{blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,g,i*35));}}]);}addGroup(canvas,`All ${v.b} groups together = ${v.b}×${v.a} = ${v.a*v.b} copies of ${v.n}`,[{blocks(row){for(let g=0;g<v.b;g++){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,g,(g*v.a+i)*22));if(g<v.b-1)row.appendChild(makeSep('·'));}}}]);},insight:'<strong>(nᵃ)ᵇ = nᵃˣᵇ</strong> — b groups of a copies each = a×b copies total. The exponents multiply.'},
+  {concept:'<strong>Subtract exponents</strong> when dividing same base. nᵃ ÷ nᵇ cancels b copies top and bottom — only a−b survive.',sliders:[{key:'n',label:'Base n',min:2,max:5,val:2},{key:'a',label:'a',min:3,max:7,val:5},{key:'b',label:'b',min:1,max:4,val:2}],problems:[{n:2,a:6,b:2},{n:3,a:5,b:3},{n:4,a:4,b:1},{n:5,a:5,b:2}],formulaFn(v){const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);return `${v.n}${sup(a)} ÷ ${v.n}${sup(b)} = ${v.n}`;},correctFn(v){const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);return a-b;},revealBodyFn(v){const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);return `Cancelled ${b} pairs → <strong>${a-b}</strong> survive. Result: ${v.n}${sup(a-b)} = ${pow(v.n,a-b)}.`;},revealFormulaFn(v){const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);return `${v.n}${sup(a)} ÷ ${v.n}${sup(b)} = ${v.n}${sup(a-b)}`;},visualFn(v,canvas){const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);const grp=document.createElement('div');grp.className='block-group';const lbl=document.createElement('div');lbl.className='bg-label';lbl.textContent=`${v.n}${sup(a)} — click the ${b} rust block${b>1?'s':''} to cancel them`;grp.appendChild(lbl);const row=document.createElement('div');row.className='blocks-row';const cancelState={count:0};for(let i=0;i<a;i++){const isC=i>=(a-b);const blk=makeBlk(v.n,isC?1:0,i*30);if(isC){blk.classList.add('cancellable');blk.addEventListener('click',()=>{blk.classList.toggle('cancelled');cancelState.count=row.querySelectorAll('.cancelled').length;const fb=document.getElementById('feedback');if(cancelState.count===b){fb.textContent=`✓ ${b} cancelled — ${a-b} remain`;fb.className='feedback ok';}else{fb.textContent=`${cancelState.count}/${b} cancelled`;fb.className='feedback';}});}row.appendChild(blk);}grp.appendChild(row);const hint=document.createElement('div');hint.style.cssText='font-size:10px;color:var(--text3);margin-top:8px;font-style:italic';hint.textContent='The rust blocks cancel against the divisor. Count the teal survivors.';grp.appendChild(hint);canvas.appendChild(grp);},insight:'<strong>nᵃ ÷ nᵇ = nᵃ⁻ᵇ</strong> — b copies appear in both numerator and denominator, so they cancel out. Only a−b copies survive.'},
+  {concept:'<strong>Multiply the bases</strong> when the exponent is the same. mᵃ × nᵃ has a copies of m and a copies of n. Pair them up: a pairs of (m×n) = (mn)ᵃ.',sliders:[{key:'m',label:'Base m',min:2,max:5,val:2},{key:'n',label:'Base n',min:2,max:5,val:3},{key:'a',label:'a',min:1,max:4,val:3}],problems:[{m:2,n:3,a:3},{m:3,n:4,a:2},{m:2,n:5,a:3},{m:4,n:2,a:2}],formulaFn(v){return `${v.m}${sup(v.a)} × ${v.n}${sup(v.a)} = (${v.m*v.n})`;},correctFn(v){return v.a;},revealBodyFn(v){return `<strong>${v.a}</strong> pairs of (${v.m}×${v.n}=${v.m*v.n}). Result: (${v.m*v.n})${sup(v.a)} = ${pow(v.m*v.n,v.a)}.`;},revealFormulaFn(v){return `${v.m}${sup(v.a)} × ${v.n}${sup(v.a)} = (${v.m*v.n})${sup(v.a)}`;},visualFn(v,canvas){addGroup(canvas,`${v.m}${sup(v.a)}: ${v.a} copies of ${v.m}`,[{blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.m,0,i*35));}}]);addGroup(canvas,`${v.n}${sup(v.a)}: ${v.a} copies of ${v.n}`,[{blocks(row){for(let i=0;i<v.a;i++)row.appendChild(makeBlk(v.n,1,i*35));}}]);const pairGrp=document.createElement('div');pairGrp.className='block-group';const pairLbl=document.createElement('div');pairLbl.className='bg-label';pairLbl.textContent=`${v.a} pairs of (${v.m}×${v.n}=${v.m*v.n})`;pairGrp.appendChild(pairLbl);const pairRow=document.createElement('div');pairRow.className='blocks-row';for(let i=0;i<v.a;i++){const{wrap,row}=makeGroup(`pair ${i+1}`);row.appendChild(makeBlk(v.m,0,i*60));row.appendChild(makeBlk(v.n,1,i*60+35));pairRow.appendChild(wrap);}pairGrp.appendChild(pairRow);canvas.appendChild(pairGrp);},insight:'<strong>mᵃ × nᵃ = (mn)ᵃ</strong> — same exponent, different bases. Group m and n values into pairs — each pair is m×n, and there are a of them.'},
+  {concept:'<strong>Zero & negative exponents.</strong> n⁰ = 1 because nᵃ ÷ nᵃ = n^(a−a) = n⁰ = 1. Negative exponent = fraction: n⁻ᵃ = 1/nᵃ.',sliders:[{key:'n',label:'Base n',min:2,max:8,val:2},{key:'a',label:'Exponent',min:-4,max:4,val:0}],problems:[{n:2,a:0},{n:5,a:0},{n:3,a:-2},{n:2,a:-3}],formulaFn(v){if(v.a===0)return `${v.n}${sup(0)} =`;if(v.a<0)return `${v.n}${sup(v.a)} = 1 /`;return `${v.n}${sup(v.a)} =`;},correctFn(v){if(v.a===0)return 1;if(v.a<0)return pow(v.n,-v.a);return pow(v.n,v.a);},revealBodyFn(v){if(v.a===0)return `${v.n}² ÷ ${v.n}² = 1. <strong>Any base to the power 0 = 1.</strong>`;if(v.a<0)return `${v.n}${sup(v.a)} = 1 ÷ ${v.n}${sup(-v.a)} = 1/${pow(v.n,-v.a)}. <strong>Negative exponent = flip to denominator.</strong>`;return `${v.n}${sup(v.a)} = ${pow(v.n,v.a)}.`;},revealFormulaFn(v){if(v.a===0)return `${v.n}${sup(0)} = 1`;if(v.a<0)return `${v.n}${sup(v.a)} = 1/${pow(v.n,-v.a)}`;return `${v.n}${sup(v.a)} = ${pow(v.n,v.a)}`;},visualFn(v,canvas){const{n,a}=v;if(a===0){addGroup(canvas,`${n}² ÷ ${n}² = 1 (same number ÷ itself)`,[{blocks(row){for(let i=0;i<2;i++)row.appendChild(makeBlk(n,0,i*35));row.appendChild(makeSep('÷'));for(let i=0;i<2;i++){const b=makeBlk(n,0,(2+i)*35);b.classList.add('cancelled');row.appendChild(b);}}}]);addGroup(canvas,'Result: 1',[{blocks(row){const b=document.createElement('div');b.style.cssText='font-size:32px;font-weight:700;font-family:var(--mono);color:var(--phosphor);text-shadow:0 0 20px var(--phosphor);';b.textContent='1';row.appendChild(b);}}]);}else if(a>0){addGroup(canvas,`${n}${sup(a)}: ${a} copies of ${n}`,[{blocks(row){for(let i=0;i<a;i++)row.appendChild(makeBlk(n,0,i*35));}}]);}else{const d=-a;const fracGrp=document.createElement('div');fracGrp.className='block-group';const fl=document.createElement('div');fl.className='bg-label';fl.textContent=`${n}${sup(a)} — ${d} copies of ${n} in the denominator`;fracGrp.appendChild(fl);const fw=document.createElement('div');fw.style.cssText='display:flex;align-items:center;gap:14px;padding:10px 0';const frac=document.createElement('div');frac.className='frac-wrap';const fn=document.createElement('div');fn.className='frac-num';fn.textContent='1';const fline=document.createElement('div');fline.className='frac-line';const fden=document.createElement('div');fden.className='frac-den';for(let i=0;i<d;i++)fden.appendChild(makeBlk(n,1,i*35));frac.appendChild(fn);frac.appendChild(fline);frac.appendChild(fden);fw.appendChild(frac);const fval=document.createElement('div');fval.style.cssText='font-size:13px;color:var(--text3);font-family:var(--mono);';fval.textContent=`= 1/${pow(n,d)} = ${1/pow(n,d)}`;fw.appendChild(fval);fracGrp.appendChild(fw);canvas.appendChild(fracGrp);}},insight:'<strong>n⁰ = 1</strong> because nᵃ÷nᵃ = n^(a−a) = n⁰ = 1. <strong>n⁻ᵃ = 1/nᵃ</strong> — the subtraction rule going below zero.'},
 ];
-
-// ── STATE ────────────────────────────────────────────────────
-let currentLaw = 0;
-let currentParams = {};
-let currentProbIdx = 0;
-let answered = false;
-
-// ── RENDER ───────────────────────────────────────────────────
+let currentLaw=0,currentParams={},currentProbIdx=0,answered=false;
 function render(){
-  const L = LAWS[currentLaw];
-  const v = {...currentParams};
-  answered = false;
-
-  document.getElementById('concept-text').innerHTML = L.concept;
-
-  // Sliders
-  const sa = document.getElementById('slider-area');
-  sa.innerHTML = '';
-  L.sliders.forEach(sl => {
-    const row = document.createElement('div');
-    row.className = 'slider-row';
-    const lbl = document.createElement('span');lbl.className='sl-label';lbl.textContent=sl.label;
-    const track = document.createElement('div');track.className='sl-track';
-    const inp = document.createElement('input');
-    inp.type='range';inp.min=sl.min;inp.max=sl.max;
-    inp.value = currentParams[sl.key] ?? sl.val;
-    const val = document.createElement('span');val.className='sl-val';val.textContent=inp.value;
-    inp.addEventListener('input',()=>{
-      currentParams[sl.key]=parseInt(inp.value);
-      val.textContent=inp.value;
-      render();
-    });
-    track.appendChild(inp);
-    row.appendChild(lbl);row.appendChild(track);row.appendChild(val);
-    sa.appendChild(row);
-  });
-
-  // Formula
-  const fb = document.getElementById('formula-bar');
-  fb.innerHTML='';
-  const pre=document.createElement('span');pre.className='fb-text';pre.textContent=L.formulaFn(v);
-  fb.appendChild(pre);
-  const blank=document.createElement('input');
-  blank.type='number';blank.className='fb-blank';blank.id='blank-input';blank.placeholder='?';blank.autocomplete='off';
+  const L=LAWS[currentLaw];const v={...currentParams};answered=false;
+  document.getElementById('concept-text').innerHTML=L.concept;
+  const sa=document.getElementById('slider-area');sa.innerHTML='';
+  L.sliders.forEach(sl=>{const row=document.createElement('div');row.className='slider-row';const lbl=document.createElement('span');lbl.className='sl-label';lbl.textContent=sl.label;const track=document.createElement('div');track.className='sl-track';const inp=document.createElement('input');inp.type='range';inp.min=sl.min;inp.max=sl.max;inp.value=currentParams[sl.key]??sl.val;const val=document.createElement('span');val.className='sl-val';val.textContent=inp.value;inp.addEventListener('input',()=>{currentParams[sl.key]=parseInt(inp.value);val.textContent=inp.value;render();});track.appendChild(inp);row.appendChild(lbl);row.appendChild(track);row.appendChild(val);sa.appendChild(row);});
+  const fb=document.getElementById('formula-bar');fb.innerHTML='';
+  const pre=document.createElement('span');pre.className='fb-text';pre.textContent=L.formulaFn(v);fb.appendChild(pre);
+  const blank=document.createElement('input');blank.type='number';blank.className='fb-blank';blank.id='blank-input';blank.placeholder='?';blank.autocomplete='off';
   blank.addEventListener('keydown',e=>{if(e.key==='Enter')checkAnswer();});
   blank.addEventListener('input',()=>{blank.classList.remove('wrong','correct');document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';});
   fb.appendChild(blank);
-
-  // Reset
-  document.getElementById('check-btn').disabled=false;
-  document.getElementById('feedback').textContent='';
-  document.getElementById('feedback').className='feedback';
-  document.getElementById('reveal-box').classList.remove('show');
-
-  // Visual
-  const canvas=document.getElementById('visual-canvas');
-  canvas.innerHTML='';
-  L.visualFn(v,canvas);
-  updateCounter();
-
-  // Problems
-  renderProblems();
-
-  // Insight
+  document.getElementById('check-btn').disabled=false;document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('reveal-box').classList.remove('show');
+  const canvas=document.getElementById('visual-canvas');canvas.innerHTML='';L.visualFn(v,canvas);updateCounter();renderProblems();
   document.getElementById('insight-box').innerHTML=L.insight;
-
-  setTimeout(()=>{
-    const b=document.getElementById('blank-input');
-    if(b)b.focus();
-  },60);
+  setTimeout(()=>{const b=document.getElementById('blank-input');if(b)b.focus();},60);
 }
-
 function updateCounter(){
-  const v=currentParams;
-  const L=LAWS[currentLaw];
-  let label='';
+  const v=currentParams;let label='';
   if(currentLaw===0)label=`${v.n}${sup(v.a)} × ${v.n}${sup(v.b)} = ${v.n}${sup(v.a+v.b)} = ${pow(v.n,v.a+v.b)}`;
   else if(currentLaw===1)label=`(${v.n}${sup(v.a)})${sup(v.b)} = ${v.n}${sup(v.a*v.b)} = ${pow(v.n,v.a*v.b)}`;
   else if(currentLaw===2){const a=Math.max(v.a,v.b+1),b=Math.min(v.a-1,v.b);label=`${v.n}${sup(a)}÷${v.n}${sup(b)} = ${v.n}${sup(a-b)}`;}
@@ -872,86 +207,34 @@ function updateCounter(){
   else if(currentLaw===4){if(v.a===0)label=`${v.n}⁰ = 1`;else if(v.a<0)label=`${v.n}${sup(v.a)} = 1/${pow(v.n,-v.a)}`;else label=`${v.n}${sup(v.a)} = ${pow(v.n,v.a)}`;}
   document.getElementById('rp-counter').textContent=label;
 }
-
 function renderProblems(){
-  const L=LAWS[currentLaw];
-  const pills=document.getElementById('prob-pills');
-  pills.innerHTML='';
-  L.problems.forEach((prob,i)=>{
-    const btn=document.createElement('button');
-    btn.className='prob-pill'+(i===currentProbIdx?' active':'');
-    let lbl='';
+  const L=LAWS[currentLaw];const pills=document.getElementById('prob-pills');pills.innerHTML='';
+  L.problems.forEach((prob,i)=>{const btn=document.createElement('button');btn.className='prob-pill'+(i===currentProbIdx?' active':'');let lbl='';
     if(currentLaw===0)lbl=`${prob.n}${sup(prob.a)}×${prob.n}${sup(prob.b)}`;
     else if(currentLaw===1)lbl=`(${prob.n}${sup(prob.a)})${sup(prob.b)}`;
     else if(currentLaw===2){const a=Math.max(prob.a,prob.b+1),b=Math.min(prob.a-1,prob.b);lbl=`${prob.n}${sup(a)}÷${prob.n}${sup(b)}`;}
     else if(currentLaw===3)lbl=`${prob.m}${sup(prob.a)}×${prob.n}${sup(prob.a)}`;
     else lbl=`${prob.n}${sup(prob.a)}`;
-    btn.textContent=lbl;
-    btn.addEventListener('click',()=>{
-      currentProbIdx=i;
-      Object.assign(currentParams,prob);
-      render();
-    });
-    pills.appendChild(btn);
-  });
+    btn.textContent=lbl;btn.addEventListener('click',()=>{currentProbIdx=i;Object.assign(currentParams,prob);render();});pills.appendChild(btn);});
 }
-
-// ── CHECK ────────────────────────────────────────────────────
 function checkAnswer(){
-  if(answered)return;
-  const L=LAWS[currentLaw];
-  const v={...currentParams};
-  const blank=document.getElementById('blank-input');
-  const userVal=parseInt(blank.value);
-  const correct=L.correctFn(v);
-  const fb=document.getElementById('feedback');
+  if(answered)return;const L=LAWS[currentLaw];const v={...currentParams};
+  const blank=document.getElementById('blank-input');const userVal=parseInt(blank.value);const correct=L.correctFn(v);const fb=document.getElementById('feedback');
   if(isNaN(userVal)){fb.textContent='type a number';fb.className='feedback bad';blank.focus();return;}
   if(userVal===correct){
-    answered=true;
-    blank.classList.add('correct');blank.disabled=true;
-    fb.textContent='✓ correct';fb.className='feedback ok';
-    document.getElementById('check-btn').disabled=true;
-    // flash
-    const fl=document.getElementById('flash');
-    fl.classList.add('flash');setTimeout(()=>fl.classList.remove('flash'),400);
-    // reveal
-    const rev=document.getElementById('reveal-box');
-    rev.classList.add('show');
-    document.getElementById('reveal-body').innerHTML=L.revealBodyFn(v);
-    document.getElementById('reveal-formula').textContent=L.revealFormulaFn(v);
-    // lock visible blocks
-    document.querySelectorAll('.blk').forEach((b,i)=>{
-      setTimeout(()=>b.classList.add('locked'),i*18);
-    });
-  } else {
-    blank.classList.remove('shake','wrong');void blank.offsetWidth;
-    blank.classList.add('shake','wrong');
-    const diff=userVal-correct;
-    if(Math.abs(diff)===1)fb.textContent=diff>0?'one too high':'one too low';
-    else fb.textContent='try again — what operation on exponents?';
-    fb.className='feedback bad';
-    blank.select();
+    answered=true;blank.classList.add('correct');blank.disabled=true;fb.textContent='✓ correct';fb.className='feedback ok';document.getElementById('check-btn').disabled=true;
+    const fl=document.getElementById('flash');fl.classList.add('flash');setTimeout(()=>fl.classList.remove('flash'),400);
+    const rev=document.getElementById('reveal-box');rev.classList.add('show');document.getElementById('reveal-body').innerHTML=L.revealBodyFn(v);document.getElementById('reveal-formula').textContent=L.revealFormulaFn(v);
+    document.querySelectorAll('.blk').forEach((b,i)=>{setTimeout(()=>b.classList.add('locked'),i*18);});
+  }else{
+    blank.classList.remove('shake','wrong');void blank.offsetWidth;blank.classList.add('shake','wrong');
+    const diff=userVal-correct;if(Math.abs(diff)===1)fb.textContent=diff>0?'one too high':'one too low';else fb.textContent='try again — what operation on exponents?';
+    fb.className='feedback bad';blank.select();
   }
 }
-
 document.getElementById('check-btn').addEventListener('click',checkAnswer);
-
-// ── TAB SWITCHING ─────────────────────────────────────────────
-document.querySelectorAll('.law-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.law-tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    currentLaw=parseInt(tab.dataset.law);
-    currentProbIdx=0;
-    const firstProb=LAWS[currentLaw].problems[0];
-    currentParams={n:2,a:3,b:2,m:2,...firstProb};
-    render();
-  });
-});
-
-// ── INIT ──────────────────────────────────────────────────────
-currentParams={...LAWS[0].problems[0]};
-render();
+document.querySelectorAll('.law-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.law-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');currentLaw=parseInt(tab.dataset.law);currentProbIdx=0;const firstProb=LAWS[currentLaw].problems[0];currentParams={n:2,a:3,b:2,m:2,...firstProb};render();});});
+currentParams={...LAWS[0].problems[0]};render();
 </script>
 </body>
 </html>
